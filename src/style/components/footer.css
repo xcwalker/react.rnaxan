@@ -1,0 +1,49 @@
+#root>footer {
+    /* sizing */
+    padding: var(--footer-padding);
+
+    /* styling */
+    background-color: var(--background-color-200);
+    color: var(--foreground-color-200);
+}
+
+#root>footer .container {
+    /* grid */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(282px, 100%), 1fr));
+    gap: var(--gap);
+}
+
+#root>footer .container section {
+    /* sizing */
+    width: 275px;
+}
+
+#root>footer .container section.info svg {
+    /* sizing */
+    width: 100%;
+    height: fit-content;
+
+    /* styling */
+    fill: currentColor;
+    color: inherit;
+}
+
+#root>footer .container section.info a,
+#root>footer .container section.info p {
+    /* sizing */
+    padding: 0;
+    margin: 0;
+
+    /* text */
+    text-decoration: none;
+
+    /* styling */
+    color: inherit;
+}
+
+#root>footer .container section.info a:hover,
+#root>footer .container section.info a:focus {
+    /* text */
+    text-decoration: underline;
+}

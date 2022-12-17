@@ -1,7 +1,18 @@
+import { LogoXCWalkerRnaxanFull } from "./logo";
+
+import "../style/components/footer.css"
+
 export function Footer() {
-    return <footer className="footer" id="footer">
+    return <footer id="footer">
         <div className="container">
-            <h1>Rnaxan Footer</h1>
+            <section className="info">
+                <LogoXCWalkerRnaxanFull />
+                <a href="https://xcwalker.dev">Copyright © 2022 XCWalker.</a>
+                <p>All rights reserved.</p>
+            </section>
+            <section />
+            <section />
+            <section />
         </div>
     </footer>
 }
