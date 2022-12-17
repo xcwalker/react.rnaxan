@@ -2,18 +2,20 @@ import { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Footer } from "./components/footer";
 import { Loading } from "./components/loading";
-import { Navbar } from "./components/navbar";
-import { lazyLoad } from "./functions/lazyLoad";
+import { Header } from "./components/header";
 import { AboutIndex, AboutFaq } from "./pages/AboutPages";
 import { AccountForgot, AccountIndex, AccountLogin, AccountRegister } from "./pages/AccountPages";
 import { DefaultHomepage } from "./pages/Homepages";
 import { RecipeIndex, RecipeEdit, RecipeNew, RecipeView } from "./pages/RecipePages";
-import { RecipesIndex, RecipesSearch, RecipesUser, RecipesUserID } from "./pages/RecipesPages";
+import { RecipesArchive, RecipesIndex, RecipesSearch, RecipesUser, RecipesUserID } from "./pages/RecipesPages";
+
+import "./style/defaults/variables.css"
+import "./style/defaults/page-setup.css"
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
+      <Header />
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<DefaultHomepage />} />
@@ -32,6 +34,7 @@ function App() {
           <Route path="recipes">
             <Route index element={<RecipesIndex />} />
             <Route path="search" element={<RecipesSearch />} />
+            <Route path="archive" element={<RecipesArchive />} />
             <Route path="user">
               <Route index element={<RecipesUser />} />
               <Route path=":uid" element={<RecipesUserID />} />

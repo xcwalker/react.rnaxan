@@ -10,6 +10,12 @@ export function RecipesSearch() {
     </>
 }
 
+export function RecipesArchive() {
+    return <>
+        <h2>Recipes (Archive)</h2>
+    </>
+}
+
 export function RecipesUser() {
     return <>
         <h2>Recipes (User)</h2>
