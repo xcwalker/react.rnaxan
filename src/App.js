@@ -3,7 +3,7 @@ import { AboutFaq, AboutIndex } from "./pages/AboutPages";
 import { AccountForgot, AccountIndex, AccountLogin, AccountRegister } from "./pages/AccountPages";
 import { DefaultHomepage } from "./pages/Homepages";
 import { RecipeEdit, RecipeIndex, RecipeNew, RecipeView } from "./pages/RecipePages";
-import { RecipesIndex, RecipesSearch } from "./pages/RecipesPages";
+import { RecipesIndex, RecipesSearch, RecipesUser, RecipesUserID } from "./pages/RecipesPages";
 
 function App() {
   return (
@@ -25,6 +25,10 @@ function App() {
         <Route path="recipes">
           <Route index element={<RecipesIndex />} />
           <Route path="search" element={<RecipesSearch />} />
+          <Route path="user">
+            <Route index element={<RecipesUser />} />
+            <Route path=":uid" element={<RecipesUserID />} />
+          </Route>
         </Route>
 
         {/* Handle Users */}
@@ -39,6 +43,7 @@ function App() {
         <Route path="about">
           <Route index element={<AboutIndex />} />
           <Route path="faq" element={<AboutFaq />} />
+          <Route path="contact" element={<AboutFaq />} />
         </Route>
       </Routes>
     </BrowserRouter>
