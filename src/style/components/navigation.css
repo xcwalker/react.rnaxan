@@ -1,0 +1,204 @@
+html[data-nav-state="open"] #root>section.nav {
+    /* visibility */
+    translate: 0 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    pointer-events: auto;
+}
+
+html[data-nav-state="open"] {
+    overflow-y: hidden;
+}
+
+#root>section.nav {
+    /* position */
+    position: fixed;
+    inset: 0;
+    bottom: auto;
+    z-index: 999;
+
+    /* sizing */
+    width: 100%;
+    height: 100vh;
+
+    /* visibility */
+    translate: 100% 0;
+    transition: translate 0.25s ease-in-out;
+
+    /* styling */
+    background: radial-gradient(circle farthest-side at 0% 100%, rgb(255, 0, 191) 0%, rgba(255, 0, 191, 0) 100%),
+        radial-gradient(circle farthest-side at 100% 100%, rgb(167, 21, 21) 0%, rgba(167, 21, 21, 0) 100%),
+        radial-gradient(circle farthest-side at 100% 0%, rgb(202, 115, 0) 0%, rgba(202, 115, 0, 0) 100%),
+        radial-gradient(circle farthest-side at 0% 0%, rgb(11, 0, 107) 0%, rgba(11, 0, 107, 0) 100%), black;
+}
+
+#root>section.nav>.container {
+    /* sizing */
+    padding: var(--header-padding);
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/*** top ***/
+#root>section.nav>.container .top {
+    /* sizing */
+    height: calc(var(--header-height) - (var(--default-padding) * 2));
+
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#root>section.nav>.container .top a,
+#root>section.nav>.container .top a svg {
+    /* sizing */
+    height: 100%;
+    width: auto;
+
+    /* styling */
+    fill: currentColor;
+    color: inherit;
+}
+
+#root>section.nav>.container .top button {
+    /* sizing */
+    padding: 0;
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+
+    /* styling */
+    border: 2px solid transparent;
+    background-color: transparent;
+    color: inherit;
+}
+
+#root>section.nav>.container .top button div:nth-child(1),
+#root>section.nav>.container .top button div:nth-child(2),
+#root>section.nav>.container .top button div:nth-child(3) {
+    /* sizing */
+    width: 35px;
+    height: 5px;
+
+    /* styling */
+    background-color: currentColor;
+
+    /* scale */
+    transform-origin: center right;
+
+    /* transition */
+    transition: scale 0.125s ease-in-out;
+}
+
+#root>section.nav>.container .top button div:nth-child(2) {
+    /* scale */
+    scale: 0.66 1;
+}
+
+#root>section.nav>.container .top button:hover div:nth-child(2) {
+    /* scale */
+    scale: 1 1;
+}
+
+#root>section.nav>.container .top button:active div:nth-child(1),
+#root>section.nav>.container .top button:active div:nth-child(3) {
+    /* scale */
+    scale: 0.66 1;
+}
+
+/*** middle ***/
+#root>section.nav>.container .middle {
+    /* spacing */
+    padding: 50px 0;
+    margin: 0;
+    width: fit-content;
+
+    /* list */
+    list-style: none;
+}
+
+#root>section.nav>.container .middle li {
+    /* position */
+    position: relative;
+
+    /* sizing */
+    width: 100%;
+    height: var(--height);
+
+    /* variables */
+    --height: 80px;
+
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#root>section.nav>.container .middle li a,
+#root>section.nav>.container .middle li ul a {
+    /* sizing */
+    width: 100%;
+    height: var(--height);
+    padding: var(--default-padding) calc(var(--default-padding) * 2);
+
+    /* flex */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    /* text */
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
+
+    /* styling */
+    color: var(--foreground-color-100);
+}
+
+#root>section.nav>.container .middle li a:hover,
+#root>section.nav>.container .middle li ul a:hover {
+    /* text */
+    text-decoration: underline;
+}
+
+#root>section.nav>.container .middle li ul {
+    /* position */
+    position: absolute;
+    top: 0;
+    left: 100%;
+
+    /* sizing */
+    padding: 0;
+    margin: 0;
+    width: max-content;
+
+    /* hiding */
+    display: none;
+}
+
+
+#root>section.nav>.container .middle li:hover ul,
+#root>section.nav>.container .middle li ul:hover {
+    /* flex */
+    display: flex;
+    flex-direction: column;
+}
+
+#root>section.nav>.container .middle li ul a {
+    /* sizing */
+    width: 100%;
+
+    /* text */
+    font-weight: 700;
+}

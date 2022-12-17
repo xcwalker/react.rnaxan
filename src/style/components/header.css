@@ -1,0 +1,88 @@
+#root>header {
+    /* position */
+    position: fixed;
+    inset: 0;
+    bottom: auto;
+    z-index: 998;
+
+    /* sizing */
+    height: var(--header-height);
+
+    /* styling */
+    background-color: transparent;
+    color: var(--foreground-color-200);
+}
+
+#root>header .container {
+    /* sizing */
+    width: 100%;
+    height: 100%;
+    padding: var(--header-padding);
+
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#root>header .container a,
+#root>header .container a svg {
+    /* sizing */
+    height: 100%;
+    width: auto;
+
+    /* styling */
+    fill: currentColor;
+    color: inherit;
+}
+
+#root>header .container button {
+    /* sizing */
+    padding: 0;
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+
+    /* styling */
+    border: 2px solid transparent;
+    background-color: transparent;
+    color: inherit;
+}
+
+#root>header .container button div:nth-child(1),
+#root>header .container button div:nth-child(2),
+#root>header .container button div:nth-child(3) {
+    /* sizing */
+    width: 35px;
+    height: 5px;
+
+    /* styling */
+    background-color: currentColor;
+
+    /* scale */
+    transform-origin: center right;
+
+    /* transition */
+    transition: scale 0.125s ease-in-out;
+}
+
+#root>header .container button div:nth-child(2) {
+    /* scale */
+    scale: 0.66 1;
+}
+
+#root>header .container button:hover div:nth-child(2) {
+    /* scale */
+    scale: 1 1;
+}
+
+#root>header .container button:active div:nth-child(1),
+#root>header .container button:active div:nth-child(3) {
+    /* scale */
+    scale: 0.66 1;
+}
