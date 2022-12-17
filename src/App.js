@@ -8,7 +8,7 @@ import { AboutIndex, AboutFaq } from "./pages/AboutPages";
 import { AccountForgot, AccountIndex, AccountLogin, AccountRegister } from "./pages/AccountPages";
 import { DefaultHomepage } from "./pages/Homepages";
 import { RecipeIndex, RecipeEdit, RecipeNew, RecipeView } from "./pages/RecipePages";
-import { RecipesIndex, RecipesSearch, RecipesUser, RecipesUserID } from "./pages/RecipeSPages";
+import { RecipesIndex, RecipesSearch, RecipesUser, RecipesUserID } from "./pages/RecipesPages";
 
 function App() {
   return (
