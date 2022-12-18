@@ -1,0 +1,516 @@
+/* section.recipe {} */
+
+section.recipe>.container {
+    /* flex */
+    display: flex;
+    flex-direction: row;
+}
+
+/**** side ****/
+section.recipe>.container .side {
+    /* sizing */
+    width: var(--width);
+    --width: 400px;
+    margin: var(--header-bottom-padding);
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--default-padding) * 2);
+}
+
+section.recipe>.container .side button.share {
+    /* sizing */
+    padding: var(--header-padding);
+
+    /* text */
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    /* styling */
+    border-radius: 0;
+    border: 2px solid var(--foreground-color-100);
+    background-color: var(--foreground-color-100);
+    color: var(--background-color-100);
+}
+
+section.recipe>.container .side button.share:hover,
+section.recipe>.container .side button.share:focus {
+    /* cursor */
+    cursor: pointer;
+
+    /* styling */
+    border: 2px solid var(--foreground-color-100);
+    background-color: var(--background-color-100);
+    color: var(--foreground-color-100);
+}
+
+section.recipe>.container .side button.share:active {
+    /* styling */
+    border: 2px solid var(--foreground-color-100);
+    background-color: var(--foreground-color-100);
+    color: var(--foreground-color-100);
+}
+
+section.recipe>.container .side .side-item {
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--default-padding);
+}
+
+section.recipe>.container .side .side-item .info {
+    /* sizing */
+
+    width: 100%;
+
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    /* styling */
+    border-top: 2px solid currentColor;
+}
+
+section.recipe>.container .side .side-item .info span {
+    /* text */
+    font-size: 16px;
+    font-weight: 600;
+
+    /* styling */
+    color: inherit;
+}
+
+/*** author ***/
+section.recipe>.container .side #author .about {
+    /* sizing */
+    width: 100%;
+    padding-left: var(--default-padding);
+
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--default-padding);
+}
+
+section.recipe>.container .side #author .about img {
+    /* sizing */
+    width: calc(var(--width) / 7);
+    height: calc(var(--width) / 7);
+
+    border-radius: 50%;
+}
+
+section.recipe>.container .side #author .about>div {
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+section.recipe>.container .side #author .about div span {
+    /* text */
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+section.recipe>.container .side #author .about div span.name {
+    /* text */
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/*** information ***/
+/* section.recipe>.container .side #information {} */
+
+section.recipe>.container .side #information ul {
+    /* sizing */
+    padding: 0;
+    padding-left: var(--default-padding);
+    margin: 0;
+    width: 100%;
+
+    /* grid */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--default-padding);
+
+    /* list */
+    list-style: none;
+}
+
+section.recipe>.container .side #information ul li {
+    /* spacing */
+    padding: 0;
+    margin: 0;
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: calc(var(--default-padding) / 2);
+}
+
+section.recipe>.container .side #information ul li span.title {
+    /* text */
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+section.recipe>.container .side #information ul li span.time {
+    /* text */
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+/*** quick links ***/
+section.recipe>.container .side #quick-links ul {
+    /* spacing */
+    margin: 0;
+    padding: 0;
+    padding-left: var(--default-padding);
+    width: 100%;
+
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--default-padding);
+}
+
+section.recipe>.container .side #quick-links ul a {
+    /* text */
+    font-size: 16px;
+    font-weight: 600;
+
+    /* styling */
+    color: var(--foreground-color-100);
+}
+
+section.recipe>.container .side #quick-links ul a:hover,
+section.recipe>.container .side #quick-links ul a:focus {
+    /* text */
+    text-decoration: none;
+}
+
+/*** ingredients ***/
+/* section.recipe>.container .side #ingredients {} */
+
+section.recipe>.container .side #ingredients ul {
+    /* sizing */
+    margin: 0;
+    padding: 0;
+    padding-left: calc(var(--default-padding) * 2);
+    width: 100%;
+}
+
+section.recipe>.container .side #ingredients ul li {
+    /* text */
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/**** main ****/
+section.recipe>.container .main {
+    /* sizing */
+    width: 100%;
+}
+
+/*** header ***/
+section.recipe>.container .main>header {
+    /* position */
+    position: relative;
+
+    /* sizing */
+    width: 100%;
+    height: 400px;
+    margin: 0;
+}
+
+section.recipe>.container .main>header img {
+    /* position */
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    /* sizing */
+    width: 100%;
+    height: 100%;
+
+    /* image */
+    object-fit: cover;
+}
+
+section.recipe>.container .main>header>.container {
+    /* position */
+    position: absolute;
+    inset: 0;
+    bottom: auto;
+}
+
+section.recipe>.container .main>header>.container::before {
+    /* content */
+    content: "";
+
+    /* position */
+    position: absolute;
+    inset: 0;
+    bottom: auto;
+    z-index: -1;
+
+    /* sizing */
+    height: calc(100% + 50px);
+
+    /* styling */
+    background: rgb(0, 0, 0);
+    background: -moz-linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+    background: -webkit-linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#000000", GradientType=1);
+}
+
+section.recipe>.container .main>header>.container .info {
+    /* sizing */
+    margin: var(--header-bottom-padding);
+
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    /* styling */
+    border-top: 2px solid currentColor;
+}
+
+section.recipe>.container .main>header .info span {
+    /* text */
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+
+    /* styling */
+    color: inherit;
+}
+
+/*** main ***/
+/* section.recipe>.container .main>main {} */
+
+/*** footer ***/
+/* section.recipe>.container .main>footer {} */
+
+/**** share - modal ****/
+dialog.recipe-share {
+    /* position */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+
+    /* sizing */
+    margin: 0;
+    padding: 0;
+    width: min(100%, calc((var(--section-width) * 2) + (var(--section-gap) * 2) + min(var(--default-padding) * 4, max(4vw, var(--default-padding)))));
+    --section-width: 300px;
+    --section-gap: calc(var(--default-padding) * 4);
+
+    /* styling */
+    border-radius: 0;
+    border: transparent;
+}
+
+dialog.recipe-share::backdrop {
+    background: rgb(0 0 0 / 0.75);
+}
+
+/*** header ***/
+dialog.recipe-share>.container header {
+    /* sizing */
+    padding: var(--header-padding);
+
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    /* styling */
+    background-color: var(--background-color-200);
+}
+
+dialog.recipe-share>.container header>span {
+    /* text */
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    /* styling */
+    color: var(--foreground-color-200);
+}
+
+dialog.recipe-share>.container header button {
+    /* sizing */
+    height: 22px;
+    width: 22px;
+    padding: 0;
+
+    /* flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* text */
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    /* styling */
+    border-radius: 0;
+    overflow: hidden;
+    border: none;
+    border: 2px solid var(--foreground-color-200);
+    background-color: var(--foreground-color-200);
+    color: var(--background-color-200);
+}
+
+dialog.recipe-share>.container header button:hover,
+dialog.recipe-share>.container header button:focus {
+    /* styling */
+    border: 2px solid var(--foreground-color-200);
+    background-color: var(--background-color-200);
+    color: var(--foreground-color-200);
+}
+
+dialog.recipe-share>.container header button:active {
+    /* styling */
+    border: 2px solid var(--foreground-color-200);
+    background-color: var(--foreground-color-200);
+    color: var(--foreground-color-200);
+}
+
+/*** main ***/
+dialog.recipe-share>.container main {
+    /* sizing */
+    padding: var(--header-padding);
+
+    /* flex */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: var(--section-gap);
+
+    /* styling */
+    background-color: var(--background-color-100);
+}
+
+dialog.recipe-share>.container main .qr {
+    /* sizing */
+    width: min(var(--section-width), 100%);
+    height: fit-content;
+
+    /* flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+dialog.recipe-share>.container main .qr svg {
+    /* sizing */
+    padding: var(--default-padding);
+    height: fit-content;
+
+    /* styling */
+    background-color: white;
+}
+
+dialog.recipe-share>.container main .other {
+    /* sizing */
+    width: min(var(--section-width), 100%);
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    gap: var(--header-padding);
+}
+
+dialog.recipe-share>.container main .other>span {
+    /* text */
+    font-size: 20px;
+    font-weight: 600;
+
+    /* styling */
+    color: var(--foreground-color-200);
+}
+
+dialog.recipe-share>.container main .other ul {
+    /* sizing */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    /* flex */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--default-padding);
+}
+
+dialog.recipe-share>.container main .other ul .share-btn {
+    /* sizing */
+    width: 45px;
+    height: 45px;
+
+    /* flex */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* text */
+    text-decoration: none;
+
+    /* styling */
+    border-radius: 0;
+    overflow: hidden;
+    border: none;
+    background-color: transparent;
+    color: var(--foreground-color-100);
+}
+
+dialog.recipe-share>.container main .other ul .share-btn#email {
+    /* styling */
+    background-color: rgb(63, 131, 255);
+}
+
+dialog.recipe-share>.container main .other ul .share-btn#copy {
+    /* styling */
+    background-color: rgb(101, 18, 255);
+}
+
+/* dialog.recipe-share>.container main .other ul .share-btn span {} */
+
+dialog.recipe-share>.container main .other ul .share-btn svg {
+    /* sizing */
+    width: 100%;
+    height: 100%;
+}
+
+/*** footer ***/
+/* dialog.recipe-share>.container footer {} */

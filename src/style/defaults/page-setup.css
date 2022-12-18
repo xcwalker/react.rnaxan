@@ -22,7 +22,7 @@ body {
     transition: background-color ease-in-out 0.5s, color ease-in-out 0.5s;
 }
 
-main {
+#root>main {
     min-height: 70vh;
 }
 

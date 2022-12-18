@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom"
 import "../style/pages/homepage/default.css"
 import "../style/pages/homepage/hero.css"
+import { recipes } from "../temp/recipes"
 
 export function DefaultHomepage() {
     return <>
-        <Hero recipe={{ about: { title: "Cosmo Chicken Baguette", subtitle: "XCWalker's Baguette Series" } }} />
+        <Hero recipe={recipes[0]} />
     </>
 }
 
@@ -13,7 +14,7 @@ function Hero(props) {
         <div className="container">
             <div className="top">
                 <div className="container">
-                    <h3 className="subtitle">{props.recipe.about.subtitle}</h3>
+                    <h3 className="subTitle">{props.recipe.about.subTitle}</h3>
                     <span className="date">Dec. 16, 2020</span>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-#root>section.hero {
+#root>main>section.hero {
     /* sizing */
     width: 100%;
     height: 100vh;
@@ -7,12 +7,12 @@
     color: var(--dnu-light-color-200);
 }
 
-#root>section.hero *::selection {
+#root>main>section.hero *::selection {
     color: var(--dnu-dark-color-200);
     background-color: var(--dnu-light-color-200);
 }
 
-#root>section.hero>.container {
+#root>main>section.hero>.container {
     /* position */
     position: relative;
 
@@ -26,7 +26,7 @@
     justify-content: space-between;
 }
 
-#root>section.hero>.container .background {
+#root>main>section.hero>.container .background {
     /* position */
     position: absolute;
     inset: 0;
@@ -40,13 +40,13 @@
     object-fit: cover;
 }
 
-#root>section.hero>.container .top {
+#root>main>section.hero>.container .top {
     /* position */
     position: relative;
     z-index: 1;
 }
 
-#root>section.hero>.container .top::before {
+#root>main>section.hero>.container .top::before {
     /* content */
     content: "";
 
@@ -67,7 +67,7 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#000000", GradientType=1);
 }
 
-#root>section.hero>.container .top .container {
+#root>main>section.hero>.container .top .container {
     /* sizing */
     margin: var(--header-bottom-padding);
     width: auto;
@@ -82,8 +82,8 @@
     border-top: 2px solid currentColor;
 }
 
-#root>section.hero>.container .top .container span,
-#root>section.hero>.container .top .container h3 {
+#root>main>section.hero>.container .top .container span,
+#root>main>section.hero>.container .top .container h3 {
     /* spacing */
     padding: 0;
     margin: 0;
@@ -97,13 +97,13 @@
     color: inherit;
 }
 
-#root>section.hero>.container .bottom {
+#root>main>section.hero>.container .bottom {
     /* position */
     position: relative;
     z-index: 1;
 }
 
-#root>section.hero>.container .bottom::before {
+#root>main>section.hero>.container .bottom::before {
     /* content */
     content: "";
 
@@ -124,7 +124,7 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#000000", GradientType=1);
 }
 
-#root>section.hero>.container .bottom .container {
+#root>main>section.hero>.container .bottom .container {
     /* sizing */
     margin: var(--footer-padding);
 
@@ -137,7 +137,7 @@
     align-items: center;
 }
 
-#root>section.hero>.container .bottom .container h2 {
+#root>main>section.hero>.container .bottom .container h2 {
     /* spacing */
     margin: 0;
     padding: 0;
@@ -151,7 +151,7 @@
     color: inherit;
 }
 
-#root>section.hero>.container .bottom .container a {
+#root>main>section.hero>.container .bottom .container a {
     /* sizing */
     padding: var(--header-padding);
 
