@@ -24,6 +24,14 @@ export function Header() {
 }
 
 function Navigation() {
+    const ExpandNav = (e) => {
+        if (e.target.parentElement.dataset.navSubLinks === "expanded") {
+            e.target.parentElement.dataset.navSubLinks = "collapsed"
+        } else {
+            e.target.parentElement.dataset.navSubLinks = "expanded"
+        }
+    }
+
     return <section className="nav">
         <div className="container">
             <div className="top">
@@ -39,12 +47,19 @@ function Navigation() {
             <ul className="middle">
                 {NavLinks !== null && NavLinks.map((link, index) => {
                     return <li key={index}>
-                        <Link to={link.shortLink}>{link.text}</Link>
-                        {link.subLinks && <ul>
-                            {link.subLinks.map((subLink, index) => {
-                                return <Link to={subLink.shortLink} key={index}>{subLink.text}</Link>
-                            })}
-                        </ul>}
+                        <Link to={link.shortLink} className="directLink">{link.text}</Link>
+                        {link.subLinks && <>
+                            <button onClick={(Event) => { ExpandNav(Event) }}>
+                                <span>{link.text}</span>
+                                <span>+</span>
+                            </button>
+                            <ul>
+                                {link.subLinks.map((subLink, index) => {
+                                    return <Link to={subLink.shortLink} key={index}>{subLink.text}</Link>
+                                })}
+                                <Link to={link.shortLink} className="SeeAll">See All</Link>
+                            </ul>
+                        </>}
                     </li>
                 })}
             </ul>
