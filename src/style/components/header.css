@@ -10,7 +10,7 @@
 
     /* styling */
     background-color: transparent;
-    color: var(--foreground-color-200);
+    color: var(--brand-header-color);
 }
 
 #root>header .container {

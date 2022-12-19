@@ -11,7 +11,7 @@ section.recipe>.container .side {
     /* sizing */
     width: var(--width);
     --width: 400px;
-    margin: var(--header-bottom-padding);
+    margin: var(--header-style-padding);
 
     /* flex */
     display: flex;
@@ -19,7 +19,7 @@ section.recipe>.container .side {
     gap: calc(var(--default-padding) * 2);
 }
 
-section.recipe>.container .side button.share {
+section.recipe button.share {
     /* sizing */
     padding: var(--header-padding);
 
@@ -36,8 +36,8 @@ section.recipe>.container .side button.share {
     color: var(--background-color-100);
 }
 
-section.recipe>.container .side button.share:hover,
-section.recipe>.container .side button.share:focus {
+section.recipe button.share:hover,
+section.recipe button.share:focus {
     /* cursor */
     cursor: pointer;
 
@@ -47,7 +47,7 @@ section.recipe>.container .side button.share:focus {
     color: var(--foreground-color-100);
 }
 
-section.recipe>.container .side button.share:active {
+section.recipe button.share:active {
     /* styling */
     border: 2px solid var(--foreground-color-100);
     background-color: var(--foreground-color-100);
@@ -86,7 +86,7 @@ section.recipe>.container .side .side-item .info span {
 }
 
 /*** author ***/
-section.recipe>.container .side #author .about {
+section.recipe #author .about {
     /* sizing */
     width: 100%;
     padding-left: var(--default-padding);
@@ -99,7 +99,7 @@ section.recipe>.container .side #author .about {
     gap: var(--default-padding);
 }
 
-section.recipe>.container .side #author .about img {
+section.recipe #author .about img {
     /* sizing */
     width: calc(var(--width) / 7);
     height: calc(var(--width) / 7);
@@ -107,7 +107,7 @@ section.recipe>.container .side #author .about img {
     border-radius: 50%;
 }
 
-section.recipe>.container .side #author .about>div {
+section.recipe #author .about>div {
     /* flex */
     display: flex;
     flex-direction: column;
@@ -115,23 +115,23 @@ section.recipe>.container .side #author .about>div {
     justify-content: center;
 }
 
-section.recipe>.container .side #author .about div span {
+section.recipe #author .about div span {
     /* text */
     font-size: 12px;
     font-weight: 500;
     line-height: 1;
 }
 
-section.recipe>.container .side #author .about div span.name {
+section.recipe #author .about div span.name {
     /* text */
     font-size: 18px;
     font-weight: 700;
 }
 
 /*** information ***/
-/* section.recipe>.container .side #information {} */
+/* section.recipe #information {} */
 
-section.recipe>.container .side #information ul {
+section.recipe #information ul {
     /* sizing */
     padding: 0;
     padding-left: var(--default-padding);
@@ -147,7 +147,7 @@ section.recipe>.container .side #information ul {
     list-style: none;
 }
 
-section.recipe>.container .side #information ul li {
+section.recipe #information ul li {
     /* spacing */
     padding: 0;
     margin: 0;
@@ -160,14 +160,14 @@ section.recipe>.container .side #information ul li {
     gap: calc(var(--default-padding) / 2);
 }
 
-section.recipe>.container .side #information ul li span.title {
+section.recipe #information ul li span.title {
     /* text */
     font-size: 16px;
     font-weight: 600;
     line-height: 1;
 }
 
-section.recipe>.container .side #information ul li span.time {
+section.recipe #information ul li span.time {
     /* text */
     font-size: 14px;
     font-weight: 500;
@@ -175,7 +175,7 @@ section.recipe>.container .side #information ul li span.time {
 }
 
 /*** quick links ***/
-section.recipe>.container .side #quick-links ul {
+section.recipe #quick-links ul {
     /* spacing */
     margin: 0;
     padding: 0;
@@ -190,7 +190,7 @@ section.recipe>.container .side #quick-links ul {
     gap: var(--default-padding);
 }
 
-section.recipe>.container .side #quick-links ul a {
+section.recipe #quick-links ul a {
     /* text */
     font-size: 16px;
     font-weight: 600;
@@ -199,24 +199,24 @@ section.recipe>.container .side #quick-links ul a {
     color: var(--foreground-color-100);
 }
 
-section.recipe>.container .side #quick-links ul a:hover,
-section.recipe>.container .side #quick-links ul a:focus {
+section.recipe #quick-links ul a:hover,
+section.recipe #quick-links ul a:focus {
     /* text */
     text-decoration: none;
 }
 
 /*** ingredients ***/
-/* section.recipe>.container .side #ingredients {} */
+/* section.recipe #ingredients {} */
 
-section.recipe>.container .side #ingredients ul {
+section.recipe #ingredients ul {
     /* sizing */
     margin: 0;
     padding: 0;
-    padding-left: calc(var(--default-padding) * 2);
+    padding-left: calc(var(--default-padding) * 3);
     width: 100%;
 }
 
-section.recipe>.container .side #ingredients ul li {
+section.recipe #ingredients ul li {
     /* text */
     font-size: 16px;
     font-weight: 600;
@@ -232,11 +232,22 @@ section.recipe>.container .main {
 section.recipe>.container .main>header {
     /* position */
     position: relative;
+    z-index: 1;
 
     /* sizing */
     width: 100%;
     height: 400px;
     margin: 0;
+
+    /* styling */
+    color: var(--dnu-light-color-100);
+    background-color: var(--background-color-400);
+}
+
+section.recipe>.container *::selection {
+    /* styling */
+    color: var(--background-color-100);
+    background-color: var(--foreground-color-100);
 }
 
 section.recipe>.container .main>header img {
@@ -363,7 +374,7 @@ section.recipe>.container .main>header .info span {
 /*** main ***/
 section.recipe>.container .main>main {
     /* sizing */
-    margin: var(--header-bottom-padding);
+    margin: var(--header-style-padding);
 
     /* flex */
     display: flex;
@@ -374,6 +385,23 @@ section.recipe>.container .main>main {
 section.recipe>.container .main>main .mobile {
     /* hiding */
     display: none;
+
+    /* sizing */
+    --width: 400px;
+}
+
+@media (max-width: 750px) {
+    section.recipe>.container .side {
+        /* hiding */
+        display: none;
+    }
+
+    section.recipe>.container .main>main .mobile {
+        /* flex */
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--default-padding) * 2);
+    }
 }
 
 section.recipe>.container .main>main .main-item {
@@ -419,6 +447,7 @@ section.recipe>.container .main>main .main-item ol {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    gap: calc(var(--default-padding) / 2);
 }
 
 section.recipe>.container .main>main .main-item ol li {

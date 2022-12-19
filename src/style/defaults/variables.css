@@ -19,6 +19,7 @@ html /* padding */ {
     --default-padding: 10px;
     --header-padding: calc(var(--default-padding) * 1) min(calc(var(--default-padding) * 4), max(4vw, var(--default-padding)));
     --header-bottom-padding: var(--header-height) min(calc(var(--default-padding) * 4), max(4vw, var(--default-padding))) 0;
+    --header-style-padding: var(--header-height) min(calc(var(--default-padding) * 4), max(4vw, var(--default-padding)));
     --footer-padding: calc(var(--default-padding) * 2) min(calc(var(--default-padding) * 4), max(4vw, var(--default-padding)));
 }
 
@@ -42,6 +43,9 @@ html {
     --background-color-300: var(--dnu-dark-color-300);
     --background-color-400: var(--dnu-dark-color-400);
     --background-color-500: var(--dnu-dark-color-500);
+
+    /* brand */
+    --brand-header-color: var(--foreground-color-200);
 
     /* selector */
     --selector-color: hsl(214, 100%, 44%);
@@ -77,6 +81,9 @@ html {
     --background-color-300: var(--dnu-light-color-300);
     --background-color-400: var(--dnu-light-color-400);
     --background-color-500: var(--dnu-light-color-500);
+
+    /* brand */
+    --brand-header-color: #f03a47;
 
     /* selector */
     --selector-color: hsl(214, 100%, 44%);
