@@ -27,29 +27,15 @@ export const recipes = [
         ],
         instructions: {
             prep: [
-                {
-                    "step": "Cut up the peppers."
-                }
+                "Cut up the peppers.",
             ],
             cook: [
-                {
-                    "step": "If your chicken breast is uncooked, cook it using your preferred recipe or by following the guide on the packaging (if present)."
-                },
-                {
-                    "step": "Cook your bacon to your preferred crispiness."
-                },
-                {
-                    "step": "While the bacon is cooking, cook the baguette(s)."
-                },
-                {
-                    "step": "Once the bacon and chicken are cooked you can begin filling the baguette, remove some of the middle of the baguette to open up space for the filling."
-                },
-                {
-                    "step": "Now you can butter and/or sauce the inside of the baguette."
-                },
-                {
-                    "step": "Place the peppers, sweetcorn, chicken and bacon into the baguette with the quantity you wish."
-                }
+                "If your chicken breast is uncooked, cook it using your preferred recipe or by following the guide on the packaging (if present).",
+                "Cook your bacon to your preferred crispiness.",
+                "While the bacon is cooking, cook the baguette(s).",
+                "Once the bacon and chicken are cooked you can begin filling the baguette, remove some of the middle of the baguette to open up space for the filling.",
+                "Now you can butter and/or sauce the inside of the baguette.",
+                "Place the peppers, sweetcorn, chicken and bacon into the baguette with the quantity you wish.",
             ]
         },
         images: {

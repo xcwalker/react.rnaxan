@@ -64,7 +64,6 @@ section.recipe>.container .side .side-item {
 
 section.recipe>.container .side .side-item .info {
     /* sizing */
-
     width: 100%;
 
     /* flex */
@@ -261,6 +260,26 @@ section.recipe>.container .main>header>.container {
     bottom: auto;
 }
 
+section.recipe>.container .main>header>.alt-container {
+    /* position */
+    position: absolute;
+    inset: 0;
+    top: auto;
+}
+
+section.recipe>.container .main>header>.alt-container .about {
+    /* sizing */
+    margin: var(--footer-padding);
+
+    /* flex */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--default-padding);
+}
+
 section.recipe>.container .main>header>.container::before {
     /* content */
     content: "";
@@ -280,6 +299,41 @@ section.recipe>.container .main>header>.container::before {
     background: -webkit-linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#000000", GradientType=1);
+}
+
+section.recipe>.container .main>header>.alt-container::before {
+    /* content */
+    content: "";
+
+    /* position */
+    position: absolute;
+    inset: 0;
+    top: auto;
+    z-index: -1;
+
+    /* sizing */
+    height: calc(100% + 50px);
+
+    /* styling */
+    background: rgb(0, 0, 0);
+    background: -moz-linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#000000", GradientType=1);
+}
+
+section.recipe>.container .main>header>.alt-container span {
+    /* spacing */
+    margin: 0;
+    padding: 0;
+
+    /* text */
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+
+    /* styling */
+    color: inherit;
 }
 
 section.recipe>.container .main>header>.container .info {
@@ -307,7 +361,71 @@ section.recipe>.container .main>header .info span {
 }
 
 /*** main ***/
-/* section.recipe>.container .main>main {} */
+section.recipe>.container .main>main {
+    /* sizing */
+    margin: var(--header-bottom-padding);
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--default-padding) * 2);
+}
+
+section.recipe>.container .main>main .mobile {
+    /* hiding */
+    display: none;
+}
+
+section.recipe>.container .main>main .main-item {
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--default-padding);
+}
+
+section.recipe>.container .main>main .main-item .info {
+    /* sizing */
+    width: 100%;
+
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    /* styling */
+    border-top: 2px solid currentColor;
+}
+
+section.recipe>.container .main>main .main-item .info span {
+    /* text */
+    font-size: 16px;
+    font-weight: 600;
+
+    /* styling */
+    color: inherit;
+}
+
+section.recipe>.container .main>main .main-item ol {
+    /* sizing */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    padding-left: calc(var(--default-padding) * 3);
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+section.recipe>.container .main>main .main-item ol li {
+    /* text */
+    font-size: 16px;
+    font-weight: 500;
+}
 
 /*** footer ***/
 /* section.recipe>.container .main>footer {} */
@@ -323,7 +441,7 @@ dialog.recipe-share {
     /* sizing */
     margin: 0;
     padding: 0;
-    width: min(100%, calc((var(--section-width) * 2) + (var(--section-gap) * 2) + min(var(--default-padding) * 4, max(4vw, var(--default-padding)))));
+    width: min(fit-content, 100%);
     --section-width: 300px;
     --section-gap: calc(var(--default-padding) * 4);
 
@@ -337,7 +455,7 @@ dialog.recipe-share::backdrop {
 }
 
 /*** header ***/
-dialog.recipe-share>.container header {
+dialog.recipe-share>header {
     /* sizing */
     padding: var(--header-padding);
 
@@ -351,7 +469,7 @@ dialog.recipe-share>.container header {
     background-color: var(--background-color-200);
 }
 
-dialog.recipe-share>.container header>span {
+dialog.recipe-share>header>span {
     /* text */
     font-size: 18px;
     font-weight: 700;
@@ -362,7 +480,7 @@ dialog.recipe-share>.container header>span {
     color: var(--foreground-color-200);
 }
 
-dialog.recipe-share>.container header button {
+dialog.recipe-share>header button {
     /* sizing */
     height: 22px;
     width: 22px;
@@ -388,15 +506,15 @@ dialog.recipe-share>.container header button {
     color: var(--background-color-200);
 }
 
-dialog.recipe-share>.container header button:hover,
-dialog.recipe-share>.container header button:focus {
+dialog.recipe-share>header button:hover,
+dialog.recipe-share>header button:focus {
     /* styling */
     border: 2px solid var(--foreground-color-200);
     background-color: var(--background-color-200);
     color: var(--foreground-color-200);
 }
 
-dialog.recipe-share>.container header button:active {
+dialog.recipe-share>header button:active {
     /* styling */
     border: 2px solid var(--foreground-color-200);
     background-color: var(--foreground-color-200);
@@ -404,7 +522,7 @@ dialog.recipe-share>.container header button:active {
 }
 
 /*** main ***/
-dialog.recipe-share>.container main {
+dialog.recipe-share>main {
     /* sizing */
     padding: var(--header-padding);
 
@@ -420,9 +538,9 @@ dialog.recipe-share>.container main {
     background-color: var(--background-color-100);
 }
 
-dialog.recipe-share>.container main .qr {
+dialog.recipe-share>main .qr {
     /* sizing */
-    width: min(var(--section-width), 100%);
+    width: fit-content;
     height: fit-content;
 
     /* flex */
@@ -431,7 +549,7 @@ dialog.recipe-share>.container main .qr {
     align-items: center;
 }
 
-dialog.recipe-share>.container main .qr svg {
+dialog.recipe-share>main .qr svg {
     /* sizing */
     padding: var(--default-padding);
     height: fit-content;
@@ -440,9 +558,9 @@ dialog.recipe-share>.container main .qr svg {
     background-color: white;
 }
 
-dialog.recipe-share>.container main .other {
+dialog.recipe-share>main .other {
     /* sizing */
-    width: min(var(--section-width), 100%);
+    width: fit-content;
 
     /* flex */
     display: flex;
@@ -450,16 +568,37 @@ dialog.recipe-share>.container main .other {
     gap: var(--header-padding);
 }
 
-dialog.recipe-share>.container main .other>span {
+dialog.recipe-share>main .other>p {
+    /* sizing */
+    padding: 0;
+    margin: 0;
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+dialog.recipe-share>main .other>p span {
     /* text */
-    font-size: 20px;
+    font-size: 22px;
+    font-weight: 700;
+
+    /* styling */
+    color: var(--foreground-color-200);
+}
+
+dialog.recipe-share>main .other>span {
+    /* text */
+    font-size: 18px;
     font-weight: 600;
 
     /* styling */
     color: var(--foreground-color-200);
 }
 
-dialog.recipe-share>.container main .other ul {
+dialog.recipe-share>main .other ul {
     /* sizing */
     width: 100%;
     margin: 0;
@@ -473,7 +612,7 @@ dialog.recipe-share>.container main .other ul {
     gap: var(--default-padding);
 }
 
-dialog.recipe-share>.container main .other ul .share-btn {
+dialog.recipe-share>main .other ul .share-btn {
     /* sizing */
     width: 45px;
     height: 45px;
@@ -494,23 +633,23 @@ dialog.recipe-share>.container main .other ul .share-btn {
     color: var(--foreground-color-100);
 }
 
-dialog.recipe-share>.container main .other ul .share-btn#email {
+dialog.recipe-share>main .other ul .share-btn#email {
     /* styling */
     background-color: rgb(63, 131, 255);
 }
 
-dialog.recipe-share>.container main .other ul .share-btn#copy {
+dialog.recipe-share>main .other ul .share-btn#copy {
     /* styling */
     background-color: rgb(101, 18, 255);
 }
 
-/* dialog.recipe-share>.container main .other ul .share-btn span {} */
+/* dialog.recipe-share>main .other ul .share-btn span {} */
 
-dialog.recipe-share>.container main .other ul .share-btn svg {
+dialog.recipe-share>main .other ul .share-btn svg {
     /* sizing */
     width: 100%;
     height: 100%;
 }
 
 /*** footer ***/
-/* dialog.recipe-share>.container footer {} */
+/* dialog.recipe-share>footer {} */

@@ -131,11 +131,40 @@ export function RecipeView() {
                                 <span className="date">{new Intl.DateTimeFormat("en-US", DateOptions).format(date)}. {date.getDate()}, {date.getFullYear()}</span>
                             </div>
                         </div>
+                        <div className="alt-container">
+                            <div className="about">
+                                <span>{recipe?.about.title}</span>
+                            </div>
+                        </div>
                     </header>
                     <main>
                         <div className="mobile">
 
                         </div>
+                        {recipe?.instructions.prep && <div className="main-item" id="prep">
+                            <div className="info">
+                                <span>Prep</span>
+                            </div>
+                            <ol>
+                                {recipe?.instructions.prep.map((step, index) => {
+                                    return <li key={index}>
+                                        {step}
+                                    </li>
+                                })}
+                            </ol>
+                        </div>}
+                        {recipe?.instructions.cook && <div className="main-item" id="instructions">
+                            <div className="info">
+                                <span>Instructions</span>
+                            </div>
+                            <ol>
+                                {recipe?.instructions.cook.map((step, index) => {
+                                    return <li key={index}>
+                                        {step}
+                                    </li>
+                                })}
+                            </ol>
+                        </div>}
                     </main>
                     <footer></footer>
                 </div>
@@ -149,10 +178,11 @@ export function RecipeView() {
                 </button>
             </header>
             <main>
-                <div className="qr">
-                    <QRCode value={"https://rnaxan.xcwalker.dev/recipe/" + params.id} />
-                </div>
                 <div className="other">
+                    <p>
+                        <span>Share this recipe with those</span>
+                        <span>nearby using this QR code,</span>
+                    </p>
                     <span>Or Share With...</span>
                     <ul>
                         <a className="share-btn" href={"mailto:?subject=Check out this recipe;body=Hi there, check out this recipe on Rnaxan, " + "https://rnaxan.xcwalker.dev/recipe/" + params.id} title="Share By Email" id="email">
@@ -170,6 +200,9 @@ export function RecipeView() {
 
 
                     </ul>
+                </div>
+                <div className="qr">
+                    <QRCode value={"https://rnaxan.xcwalker.dev/recipe/" + params.id} />
                 </div>
             </main>
             <footer></footer>
