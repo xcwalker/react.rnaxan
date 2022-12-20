@@ -1,7 +1,9 @@
+#root>section.nav {
+    overflow-x: hidden;
+}
 html[data-nav-state="open"] #root>section.nav {
     /* visibility */
     translate: 0 0;
-    overflow-x: hidden;
     overflow-y: scroll;
     pointer-events: auto;
 }

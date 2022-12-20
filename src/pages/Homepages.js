@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom"
 import "../style/pages/homepage/default.css"
 import "../style/pages/homepage/hero.css"
-import { recipes } from "../temp/recipes"
 
 export function DefaultHomepage() {
     return <>
-        <Hero recipe={recipes[0]} />
+        {/* <Hero recipe={recipes[0]} /> */}
     </>
 }
 
