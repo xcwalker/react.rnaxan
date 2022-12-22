@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from "firebase/auth";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, query, updateDoc, where } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit, orderBy, query, startAfter, updateDoc, where } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_AUTH_API_KEY,
@@ -135,6 +135,80 @@ export async function getRecipe(ID, setLoading) {
         if (setLoading) setLoading(false)
         return
     }
+}
+
+export async function getUsersRecipes(ID, setLoading) {
+    setLoading(true)
+
+    let arr = [];
+
+    const q = query(collection(db, "recipes"), where("info.author", "==", ID));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        arr.push({ id: doc.id, data: doc.data() });
+    });
+
+    setLoading(false)
+    return arr
+}
+
+export async function getFeaturedRecipes(setLoading) {
+    setLoading(true)
+
+    let arr = [];
+
+    const q = query(collection(db, "recipes"), where("info.featured", "==", true));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        arr.push({ id: doc.id, data: doc.data() });
+    });
+
+    setLoading(false)
+    return arr
+}
+
+export async function getRecipesInfiniteScroller(key) {
+    let recipes = [];
+    var lastKey = "";
+    var q;
+
+    if (key === "") {
+        // firstLoad
+
+        q = query(collection(db, "recipes"), orderBy("info.createdAt", "desc"), limit(5));
+    } else {
+        // infiniteLoads
+
+        q = query(collection(db, "recipes"), orderBy("info.createdAt", "desc"), startAfter(key), limit(
+            5
+        ));
+    }
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        recipes.push({ id: doc.id, data: doc.data() });
+        lastKey = doc.id;
+    });
+
+    return { recipes: recipes, lastKey: lastKey }
+}
+
+export async function getHeroRecipe() {
+    var id;
+    var data;
+
+    var q = query(collection(db, "recipes"), orderBy("info.createdAt", "desc"), limit(1));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        console.log(doc.data())
+        id = doc.id;
+        data = doc.data();
+    });
+
+    return {id: id, data: data}
 }
 
 export async function createRecipe(recipeOBJ, recipeMainImage, recipeOtherImages, currentUser, setLoading) {

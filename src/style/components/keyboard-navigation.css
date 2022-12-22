@@ -1,0 +1,97 @@
+#root>section.keyboard-nav {
+    /* position */
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+
+    /* visibility */
+    translate: 100% 0;
+    transition: translate 0.25s ease-in-out;
+
+    /* styling */
+    background-color: var(--background-color-100);
+    color: var(--foreground-color-100);
+}
+
+#root>section.keyboard-nav:focus-within {
+    translate: 0 0;
+}
+
+#root>section.keyboard-nav .top {
+    /* sizing */
+    height: var(--header-height);
+    padding: var(--header-padding);
+}
+
+#root>section.keyboard-nav .top svg {
+    /* sizing */
+    height: 100%;
+
+    /* styling */
+    fill: currentColor;
+    color: inherit;
+}
+
+#root>section.keyboard-nav .middle {
+    /* spacing */
+    padding: 0;
+    margin: var(--header-style-padding);
+
+    /* list */
+    list-style: none;
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: calc(var(--default-padding) * 2);
+}
+
+#root>section.keyboard-nav .middle>li {
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: calc(var(--default-padding) * 1);
+}
+
+#root>section.keyboard-nav .middle>li a {
+    /* sizing */
+    padding: 5px 15px;
+
+    /* text */
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+
+    /* styling */
+    color: var(--foreground-color-100);
+    border: 3px solid transparent;
+    border-bottom-color: currentColor;
+}
+
+#root>section.keyboard-nav .middle>li a:focus {
+    border-color: currentColor;
+    outline: none;
+}
+
+#root>section.keyboard-nav .middle>li>ul {
+    /* spacing */
+    padding: 0;
+    margin: 0;
+    padding-left: max(2vw, var(--default-padding));
+    
+    /* list */
+    list-style: none;
+
+    /* flex */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: calc(var(--default-padding) * 2);
+}

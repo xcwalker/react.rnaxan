@@ -1,3 +1,9 @@
+import { useRef, useState } from "react"
+import { Link, Navigate } from "react-router-dom";
+import { forgot, login, useAuth } from "../firebase";
+
+import "../style/pages/account/default.css"
+
 export function AccountIndex() {
     return <>
         <h1>Account (Index)</h1>
@@ -10,14 +16,82 @@ export function AccountRegister() {
     </>
 }
 
-export function AccountLogin() {
+export function AccountInfo() {
     return <>
-        <h1>Account (Login)</h1>
+        <h1>Account (Info)</h1>
+    </>
+}
+
+export function AccountLogin() {
+    const [error, setError] = useState("");
+    const currentUser = useAuth();
+
+    const emailRef = useRef();
+    const passwordRef = useRef();
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+
+        login(emailRef.current.value,)
+    }
+
+    return <>
+        {currentUser && <Navigate to='/recipes/user/' />}
+        <section className="account">
+            <div className="container">
+                <form action="" onSubmit={(Event) => { handleSubmit(Event) }}>
+                    <div className="info">
+                        <span>Login</span>
+                    </div>
+                    {error !== "" && <span className="error">Error: {error}</span>}
+                    <input type="email" name="email" id="email" ref={emailRef} placeholder="email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" required />
+                    <input type="password" name="password" id="password" ref={passwordRef} placeholder='password' pattern="^(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required />
+                    <button type="submit">Login</button>
+                    <div className="other">
+                        <Link to="../register">Need an account?</Link>
+                        <Link to="../info">Info</Link>
+                        <Link to="../forgot">Forgot Password?</Link>
+                    </div>
+                </form>
+            </div>
+            <Background />
+        </section>
     </>
 }
 
 export function AccountForgot() {
+    const [error, setError] = useState("");
+
+    const emailRef = useRef();
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+
+        forgot(emailRef.current.value)
+    }
+
     return <>
-        <h1>Account (Forgot)</h1>
+        <section className="account">
+            <div className="container">
+                <form action="" onSubmit={(Event) => { handleSubmit(Event) }}>
+                    <div className="info">
+                        <span>Forgot Password</span>
+                    </div>
+                    {error !== "" && <span className="error">Error: {error}</span>}
+                    <input type="email" name="email" id="email" ref={emailRef} placeholder="email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" required />
+                    <button type="submit">Reset Password</button>
+                    <div className="other">
+                        <Link to="../login">Login</Link>
+                    </div>
+                </form>
+            </div>
+            <Background />
+        </section>
     </>
+}
+
+function Background() {
+    return <div className="background">
+
+    </div>
 }

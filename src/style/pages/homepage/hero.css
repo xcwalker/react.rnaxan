@@ -158,10 +158,32 @@
     /* text */
     font-size: 18px;
     font-weight: 700;
-    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     text-decoration: none;
 
     /* styling */
+    border-radius: 0;
+    border: 2px solid var(--dnu-light-color-100);
+    background-color: var(--dnu-light-color-100);
+    color: var(--dnu-dark-color-100);
+}
+
+#root>main>section.hero>.container .bottom .container a:hover,
+#root>main>section.hero>.container .bottom .container a:focus {
+    /* cursor */
+    cursor: pointer;
+
+    /* styling */
+    border: 2px solid var(--dnu-light-color-100);
+    background-color: transparent;
     color: var(--dnu-light-color-100);
-    background-color: var(--dnu-dark-color-300);
+    outline: none;
+}
+
+#root>main>section.hero>.container .bottom .container a:active {
+    /* styling */
+    border: 2px solid var(--dnu-light-color-100);
+    background-color: var(--dnu-light-color-100);
+    color: var(--dnu-light-color-100);
 }

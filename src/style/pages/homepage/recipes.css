@@ -1,0 +1,122 @@
+#root>main>section.home-recipes {}
+
+#root>main>section.home-recipes>.container {
+    /* sizing */
+    padding: var(--header-style-padding);
+}
+
+#root>main>section.home-recipes>.container *::selection {
+    /* styling */
+    background-color: var(--foreground-color-200);
+    color: var(--background-color-200);
+}
+
+#root>main>section.home-recipes>.container ul {
+    /* spacing */
+    padding: 0;
+    margin: 0;
+
+    /* grid */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
+    gap: calc(var(--default-padding) * 2);
+}
+
+#root>main>section.home-recipes>.container ul a {
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--default-padding);
+
+    /* text */
+    text-decoration: none;
+
+    /* styling */
+    color: var(--foreground-color-200);
+}
+
+#root>main>section.home-recipes>.container ul a:hover,
+#root>main>section.home-recipes>.container ul a:focus {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
+}
+
+#root>main>section.home-recipes>.container ul a .info {
+    /* sizing */
+    width: 100%;
+
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    /* styling */
+    border-top: 2px solid currentColor;
+}
+
+#root>main>section.home-recipes>.container ul a .info>span {
+    /* text */
+    font-size: 16px;
+    font-weight: 600;
+
+    /* styling */
+    color: inherit;
+}
+
+#root>main>section.home-recipes>.container ul a .image {
+    /* sizing */
+    width: 100%;
+    aspect-ratio: 18/9;
+
+    /* styling */
+    background-color: currentColor;
+}
+
+#root>main>section.home-recipes>.container ul a .image img {
+    /* sizing */
+    width: 100%;
+    height: 100%;
+
+    /* image */
+    object-fit: cover;
+}
+
+#root>main>section.home-recipes>.container ul a .about {
+    /* sizing */
+    width: 100%;
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#root>main>section.home-recipes>.container ul a .about>span.title {
+    /* text */
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1;
+
+    /* overflow */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    /* styling */    
+    color: var(--foreground-color-100);
+}
+
+#root>main>section.home-recipes>.container ul a .about>span.author {
+    /* text */
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+
+    /* overflow */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

@@ -47,3 +47,8 @@
     /* text */
     text-decoration: underline;
 }
+
+#root>footer .container section.info a:focus {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}

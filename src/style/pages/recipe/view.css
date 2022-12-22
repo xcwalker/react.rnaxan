@@ -45,6 +45,7 @@ section.recipe button.share:focus {
     border: 2px solid var(--foreground-color-100);
     background-color: var(--background-color-100);
     color: var(--foreground-color-100);
+    outline: none;
 }
 
 section.recipe button.share:active {
@@ -203,6 +204,8 @@ section.recipe #quick-links ul a:hover,
 section.recipe #quick-links ul a:focus {
     /* text */
     text-decoration: none;
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
 }
 
 /*** ingredients ***/
@@ -541,6 +544,7 @@ dialog.recipe-share>header button:focus {
     border: 2px solid var(--foreground-color-200);
     background-color: var(--background-color-200);
     color: var(--foreground-color-200);
+    outline: none;
 }
 
 dialog.recipe-share>header button:active {

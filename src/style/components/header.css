@@ -10,7 +10,15 @@
 
     /* styling */
     background-color: transparent;
-    color: var(--brand-header-color);
+    color: var(--foreground-color-100);
+
+    /* transition */
+    transition: var(--transition-color-500);
+}
+
+#root>header.hero-color {
+    /* styling */
+    color: var(--dnu-light-color-100);
 }
 
 #root>header .container {
@@ -76,9 +84,16 @@
     scale: 0.66 1;
 }
 
-#root>header .container button:hover div:nth-child(2) {
+#root>header .container button:hover div:nth-child(2),
+#root>header .container button:focus div:nth-child(2) {
     /* scale */
     scale: 1 1;
+}
+
+#root>header .container a:focus,
+#root>header .container button:focus {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
 }
 
 #root>header .container button:active div:nth-child(1),

@@ -1,20 +1,22 @@
-import { Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Suspense, useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Footer } from "./components/footer";
 import { Loading } from "./components/loading";
 import { Header } from "./components/header";
 import { AboutIndex, AboutFaq } from "./pages/AboutPages";
-import { AccountForgot, AccountIndex, AccountLogin, AccountRegister } from "./pages/AccountPages";
+import { AccountForgot, AccountIndex, AccountInfo, AccountLogin, AccountRegister } from "./pages/AccountPages";
 import { DefaultHomepage } from "./pages/Homepages";
 import { RecipeIndex, RecipeEdit, RecipeNew, RecipeView } from "./pages/RecipePages";
 import { RecipesArchive, RecipesIndex, RecipesSearch, RecipesUser, RecipesUserID } from "./pages/RecipesPages";
 
 import "./style/defaults/variables.css"
 import "./style/defaults/page-setup.css"
+import "./style/defaults/transitions.css"
 
 function App() {
   return (
     <BrowserRouter>
+    <ScrollToTop />
       <Header />
       <main>
         <Suspense fallback={<Loading />}>
@@ -48,6 +50,7 @@ function App() {
               <Route path="login" element={<AccountLogin />} />
               <Route path="register" element={<AccountRegister />} />
               <Route path="forgot" element={<AccountForgot />} />
+              <Route path="info" element={<AccountInfo />} />
             </Route>
 
             {/* About */}
@@ -62,6 +65,16 @@ function App() {
       <Footer />
     </BrowserRouter>
   );
+}
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
 }
 
 export default App;

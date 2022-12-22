@@ -1,0 +1,176 @@
+#root>main>section.account {
+    /* sizing */
+    width: 100%;
+    height: 100vh;
+}
+
+#root>main>section.account>.container {
+    /* sizing */
+    width: 100%;
+    height: 100%;
+    padding: var(--header-style-padding);
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--default-padding);
+}
+
+#root>main>section.account>.container form {
+    /* sizing */
+    width: min(375px, 100%);
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--default-padding);
+
+    /* styling */
+    color: var(--foreground-color-200);
+}
+
+#root>main>section.account>.container form .info {
+    /* sizing */
+    width: 100%;
+    
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    /* styling */
+    border-top: 2px solid currentColor;
+
+    /* transition */
+    transition: var(--transition-color-500);
+}
+
+#root>main>section.account>.container form .info span {
+    /* text */
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+
+    /* styling */
+    color: inherit;
+}
+
+#root>main>section.account>.container form input {
+    /* sizing */
+    width: 100%;
+    padding: calc(var(--default-padding) / 1.5) calc(var(--default-padding) * 1.5);
+    
+    /* text */
+    font-size: 13.3333px;
+    font-weight: 400;
+    line-height: 1;
+
+    /* styling */
+    background-color: var(--background-color-100);
+    color: var(--foreground-color-100);
+    border: 1px solid currentColor;
+    border-top-width: 4px;
+
+    /* transition */
+    transition: var(--transition-color-500), var(--transition-background_color-500);
+}
+
+#root>main>section.account>.container form input:focus:valid {
+    outline: none;
+    border-top-color: var(--form-color-valid-hold);
+}
+
+#root>main>section.account>.container form input:valid {
+    border-top-color: var(--form-color-valid);
+}
+
+#root>main>section.account>.container form input:focus:invalid {
+    outline: none;
+    border-top-color: var(--form-color-invalid-hold);
+}
+
+#root>main>section.account>.container form input:invalid {
+    border-top-color: var(--form-color-invalid);
+}
+
+#root>main>section.account>.container form button {
+    /* sizing */
+    padding: var(--header-padding);
+    width: 100%;
+
+    /* text */
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+
+    /* styling */
+    border-radius: 0;
+    border: 2px solid var(--foreground-color-100);
+    background-color: var(--foreground-color-100);
+    color: var(--background-color-100);
+
+    /* transition */
+    transition: var(--transition-color-500), var(--transition-background_color-500);
+}
+
+#root>main>section.account>.container form button:hover,
+#root>main>section.account>.container form button:focus {
+    /* cursor */
+    cursor: pointer;
+
+    /* styling */
+    border: 2px solid var(--foreground-color-100);
+    background-color: transparent;
+    color: var(--foreground-color-100);
+    outline: none;
+}
+
+#root>main>section.account>.container form button:active {
+    /* styling */
+    border: 2px solid var(--foreground-color-100);
+    background-color: var(--foreground-color-100);
+    color: var(--foreground-color-100);
+}
+
+#root>main>section.account>.container form .other {
+    /* sizing */
+    width: 100%;
+
+    /* flex */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+#root>main>section.account>.container .other a {
+    /* text */
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
+
+    /* styling */
+    color: var(--foreground-color-100);
+
+    /* transition */
+    transition: var(--transition-color-500);
+}
+
+#root>main>section.account>.container .other a:hover {
+    /* text */
+    text-decoration: underline;
+}
+#root>main>section.account>.container .other a:focus {
+    /* styling */
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
