@@ -1,0 +1,536 @@
+/* section.user {} */
+
+section.user>.container {
+    /* flex */
+    display: flex;
+    flex-direction: row;
+}
+
+/**** side ****/
+section.user>.container .side {
+    /* sizing */
+    width: var(--width);
+    --width: 400px;
+    margin: var(--header-style-padding);
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--default-padding) * 2);
+}
+
+section.user .side>a,
+section.user .side>button,
+section.user .main .mobile>a,
+section.user .main .mobile>button {
+    /* sizing */
+    padding: var(--header-padding);
+
+    /* text */
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-align: center;
+
+    /* styling */
+    border-radius: 0;
+    border: 2px solid var(--foreground-color-100);
+    background-color: var(--foreground-color-100);
+    color: var(--background-color-100);
+}
+
+section.user .side>a:hover,
+section.user .side>a:focus,
+section.user .side>button:hover,
+section.user .side>button:focus,
+section.user .main .mobile>a:hover,
+section.user .main .mobile>a:focus,
+section.user .main .mobile>button:hover,
+section.user .main .mobile>button:focus {
+    /* cursor */
+    cursor: pointer;
+
+    /* styling */
+    border: 2px solid var(--foreground-color-100);
+    background-color: var(--background-color-100);
+    color: var(--foreground-color-100);
+    outline: none;
+}
+
+section.user .side>a:active,
+section.user .side>button:active,
+section.user .main .mobile>a:active,
+section.user .main .mobile>button:active {
+    /* styling */
+    border: 2px solid var(--foreground-color-100);
+    background-color: var(--foreground-color-100);
+    color: var(--foreground-color-100);
+}
+
+section.user>.container .side .side-item,
+section.user>.container .main .main-item {
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--default-padding);
+}
+
+section.user>.container .side .side-item .info,
+section.user>.container .main .main-item .info {
+    /* sizing */
+    width: 100%;
+
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    /* styling */
+    border-top: 2px solid currentColor;
+}
+
+section.user>.container .side .side-item .info span,
+section.user>.container .main .main-item .info span {
+    /* text */
+    font-size: 16px;
+    font-weight: 600;
+
+    /* styling */
+    color: inherit;
+}
+
+/*** author / user ***/
+section.user #user .about {
+    /* sizing */
+    width: 100%;
+    padding-left: var(--default-padding);
+
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--default-padding);
+}
+
+section.user #user .about img {
+    /* sizing */
+    width: calc(var(--width) / 7);
+    height: calc(var(--width) / 7);
+
+    border-radius: 50%;
+}
+
+section.user #user .about>div {
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+section.user #user .about div span {
+    /* text */
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+section.user #user .about div span.name {
+    /* text */
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/*** information ***/
+/* section.user #information {} */
+
+section.user #information ul {
+    /* sizing */
+    padding: 0;
+    padding-left: var(--default-padding);
+    margin: 0;
+    width: 100%;
+
+    /* grid */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--default-padding);
+
+    /* list */
+    list-style: none;
+}
+
+section.user #information ul li {
+    /* spacing */
+    padding: 0;
+    margin: 0;
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: calc(var(--default-padding) / 2);
+}
+
+section.user #information ul li span.title {
+    /* text */
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+section.user #information ul li span.subTitle {
+    /* text */
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+/*** quick links ***/
+section.user #links ul {
+    /* spacing */
+    margin: 0;
+    padding: 0;
+    padding-left: var(--default-padding);
+    width: 100%;
+
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--default-padding);
+
+    /* list */
+    list-style: none;
+}
+
+section.user #links ul a {
+    /* sizing */
+    --size: 24px;
+    height: var(--size);
+    width: var(--size);
+
+    /* flex */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* styling */
+    color: var(--foreground-color-100);
+}
+
+section.user #links ul a:hover,
+section.user #links ul a:focus {
+    /* text */
+    text-decoration: none;
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+section.user #links ul a img {
+    /* sizing */
+    width: 100%;
+    height: 100%;
+
+    /* image */
+    object-fit: cover;
+}
+
+/**** main ****/
+section.user>.container .main {
+    /* sizing */
+    width: 100%;
+}
+
+section.user>.container .main>main .mobile {
+    /* hiding */
+    display: none;
+
+    /* sizing */
+    --width: 400px;
+}
+
+@media (max-width: 750px) {
+    section.user>.container .side {
+        /* hiding */
+        display: none;
+    }
+
+    section.user>.container .main>main .mobile {
+        /* flex */
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--default-padding) * 2);
+    }
+}
+
+/*** main - header ***/
+section.user>.container .main>header {
+    /* position */
+    position: relative;
+    z-index: 1;
+
+    /* sizing */
+    width: 100%;
+    height: 400px;
+    margin: 0;
+
+    /* styling */
+    color: var(--dnu-light-color-100);
+    background-color: var(--background-color-400);
+}
+
+section.user>.container *::selection {
+    /* styling */
+    color: var(--background-color-100);
+    background-color: var(--foreground-color-100);
+}
+
+section.user>.container .main>header img {
+    /* position */
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    /* sizing */
+    width: 100%;
+    height: 100%;
+
+    /* image */
+    object-fit: cover;
+}
+
+section.user>.container .main>header>.container {
+    /* position */
+    position: absolute;
+    inset: 0;
+    bottom: auto;
+}
+
+section.user>.container .main>header>.alt-container {
+    /* position */
+    position: absolute;
+    inset: 0;
+    top: auto;
+}
+
+section.user>.container .main>header>.alt-container .about {
+    /* sizing */
+    margin: var(--footer-padding);
+
+    /* flex */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--default-padding);
+}
+
+section.user>.container .main>header>.container::before {
+    /* content */
+    content: "";
+
+    /* position */
+    position: absolute;
+    inset: 0;
+    bottom: auto;
+    z-index: -1;
+
+    /* sizing */
+    height: calc(100% + 50px);
+
+    /* styling */
+    background: rgb(0, 0, 0);
+    background: -moz-linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+    background: -webkit-linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#000000", GradientType=1);
+}
+
+section.user>.container .main>header>.alt-container::before {
+    /* content */
+    content: "";
+
+    /* position */
+    position: absolute;
+    inset: 0;
+    top: auto;
+    z-index: -1;
+
+    /* sizing */
+    height: calc(100% + 50px);
+
+    /* styling */
+    background: rgb(0, 0, 0);
+    background: -moz-linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#000000", GradientType=1);
+}
+
+section.user>.container .main>header>.alt-container span {
+    /* spacing */
+    margin: 0;
+    padding: 0;
+
+    /* text */
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+
+    /* styling */
+    color: inherit;
+}
+
+section.user>.container .main>header>.container .info {
+    /* sizing */
+    margin: var(--header-bottom-padding);
+
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    /* styling */
+    border-top: 2px solid currentColor;
+}
+
+section.user>.container .main>header .info span {
+    /* text */
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+
+    /* styling */
+    color: inherit;
+}
+
+/**** recipes ****/
+section.user>.container .main>main>.container {
+    /* sizing */
+    padding: var(--header-style-padding);
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--default-padding) * 2);
+}
+
+section.user>.container .main>main>.container ul {
+    /* spacing */
+    padding: 0;
+    margin: 0;
+
+    /* grid */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
+    gap: calc(var(--default-padding) * 2);
+}
+
+section.user>.container .main>main>.container ul a {
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--default-padding);
+
+    /* text */
+    text-decoration: none;
+
+    /* styling */
+    color: var(--foreground-color-200);
+}
+
+section.user>.container .main>main>.container ul a:hover,
+section.user>.container .main>main>.container ul a:focus {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
+}
+
+section.user>.container .main>main>.container ul a .info {
+    /* sizing */
+    width: 100%;
+
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    /* styling */
+    border-top: 2px solid currentColor;
+}
+
+section.user>.container .main>main>.container ul a .info>span {
+    /* text */
+    font-size: 16px;
+    font-weight: 600;
+
+    /* styling */
+    color: inherit;
+}
+
+section.user>.container .main>main>.container ul a .image {
+    /* sizing */
+    width: 100%;
+    aspect-ratio: 18/9;
+
+    /* styling */
+    background-color: currentColor;
+}
+
+section.user>.container .main>main>.container ul a .image img {
+    /* sizing */
+    width: 100%;
+    height: 100%;
+
+    /* image */
+    object-fit: cover;
+}
+
+section.user>.container .main>main>.container ul a .about {
+    /* sizing */
+    width: 100%;
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+section.user>.container .main>main>.container ul a .about>span.title {
+    /* text */
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1;
+
+    /* overflow */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    /* styling */
+    color: var(--foreground-color-100);
+}
+
+section.user>.container .main>main>.container ul a .about>span.author {
+    /* text */
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+
+    /* overflow */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

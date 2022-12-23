@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom"
 import { Helmet } from "react-helmet";
 import { getRecipe, getUserInfo } from "../firebase";
 import QRCode from "react-qr-code";
+import { LogoFacebook, LogoTwitter } from "../components/logo";
 
 import "../style/pages/recipe/view.css"
-import { LogoFacebook, LogoTwitter } from "../components/logo";
 
 export function RecipeIndex() {
     return <>
@@ -98,7 +98,7 @@ export function RecipeView() {
                                 {recipe.about?.information.map((info, index) => {
                                     return <li key={index}>
                                         <span className="title">{info.title}</span>
-                                        <span className="time">{info.subTitle}</span>
+                                        <span className="subTitle">{info.subTitle}</span>
                                     </li>
                                 })}
                             </ul>

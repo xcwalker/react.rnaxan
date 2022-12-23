@@ -27,23 +27,30 @@ export function login(email, password) {
             console.info("Logged In User (Email: " + email + ")")
         })
         .catch(err => {
+            var errorString = "";
+            console.info(err)
+            console.info(err.error)
+            console.info(err.code)
+            console.info(err.message)
             switch (err.code) {
                 case 'auth/invalid-email':
-                    error = 'Invalid Email';
+                    errorString = 'Error: Invalid Email';
                     break;
 
                 case 'auth/invalid-password':
-                    error = 'Invalid Password';
+                    errorString = 'Error: Invalid Password';
                     break;
 
                 case 'auth/too-many-requests':
-                    error = 'Too Many Requests - Reset Password';
+                    errorString = 'Error: Too Many Requests - Reset Password';
                     break;
 
                 default:
-                    error = err.code;
+                    errorString = err.code;
                     break;
             }
+
+            return { error: errorString }
         })
 }
 
@@ -95,17 +102,13 @@ export function useAuth(falseValue) {
 }
 
 export async function uploadImage(file, route, currentUser) {
-    var type = "photo";
-
     const fileEXT = file.name.split(".").pop();
     if (fileEXT !== "jpg" && fileEXT !== "jpeg" && fileEXT !== "png" && fileEXT !== "apng" && "fileEXT" !== "webp" && fileEXT !== "webm" && fileEXT !== "gif" && fileEXT === "mp4") {
         console.error("Unsupported Format");
         alert("Unsupported Format")
         return
     }
-    if (fileEXT === "webm" || fileEXT === "mp4") {
-        type = "video";
-    }
+    
     const fileRef = ref(storage, route + "/" + currentUser.uid + '-' + Date.now() + file.name);
     await uploadBytes(fileRef, file);
     const photoURL = await getDownloadURL(fileRef);
@@ -195,6 +198,32 @@ export async function getRecipesInfiniteScroller(key) {
     return { recipes: recipes, lastKey: lastKey }
 }
 
+export async function getUsersRecipesInfiniteScroller(ID, key) {
+    let recipes = [];
+    var lastKey = "";
+    var q;
+
+    if (key === "") {
+        // firstLoad
+
+        q = query(collection(db, "recipes"), where("info.author", "==", ID), orderBy("info.createdAt", "desc"), limit(5));
+    } else {
+        // infiniteLoads
+
+        q = query(collection(db, "recipes"), where("info.author", "==", ID), orderBy("info.createdAt", "desc"), startAfter(key), limit(
+            5
+        ));
+    }
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        recipes.push({ id: doc.id, data: doc.data() });
+        lastKey = doc.id;
+    });
+
+    return { recipes: recipes, lastKey: lastKey }
+}
+
 export async function getHeroRecipe() {
     var id;
     var data;
@@ -208,7 +237,7 @@ export async function getHeroRecipe() {
         data = doc.data();
     });
 
-    return {id: id, data: data}
+    return { id: id, data: data }
 }
 
 export async function createRecipe(recipeOBJ, recipeMainImage, recipeOtherImages, currentUser, setLoading) {

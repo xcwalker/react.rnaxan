@@ -1,0 +1,164 @@
+section.user #statement {
+    /* flex */
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--default-padding);
+}
+
+section.user #statement .about {
+    /* spacing */
+    padding-left: var(--default-padding);
+}
+
+section.user #statement p {
+    /* sizing */
+    margin: 0;
+    width: 100%;
+
+    /* text */
+    white-space: pre-line;
+}
+
+/*** Headings ***/
+section.user #statement h1,
+section.user #statement h2,
+section.user #statement h3,
+section.user #statement h4,
+section.user #statement h5 {
+    /* sizing */
+    width: 100%;
+    height: fit-content;
+    padding: 0 var(--default-padding);
+    margin: 0;
+
+    /* text */
+    line-height: 1;
+}
+
+section.user #statement h1 {
+    /* text */
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.4;
+
+    /* styling */
+    border-bottom: 1px solid currentColor;
+}
+
+section.user #statement h2 {
+    /* text */
+    font-size: 22px;
+    font-weight: 700;
+}
+
+section.user #statement h3 {
+    /* text */
+    font-size: 20px;
+    font-weight: 700;
+}
+
+section.user #statement h4 {
+    /* text */
+    font-size: 18px;
+    font-weight: 700;
+}
+
+section.user #statement h5 {
+    /* text */
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/*** Styling ***/
+section.user #statement strong {
+    /* display */
+    display: inline;
+
+    /* text */
+    font-weight: 600;
+}
+
+section.user #statement em {}
+
+section.user #statement del {}
+
+section.user #statement blockquote {
+    /* sizing */
+    width: 100%;
+    margin: 0;
+    padding: var(--default-padding) calc(var(--default-padding) * 2);
+
+    /* styling */
+    border-left: 2px solid currentColor;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/*** Lists ***/
+section.user #statement ol {}
+
+section.user #statement ul {}
+
+section.user #statement ol,
+section.user #statement ul {
+    /* spacing */
+    margin: 0;
+    margin-left: calc(var(--default-padding) * 3);
+    padding: 0;
+}
+
+section.user #statement .contains-task-list {
+    /* spacing */
+    margin: 0;
+    padding: 0;
+
+    /* list */
+    list-style: none;
+}
+
+/*** Image ***/
+section.user #statement img {
+    /* sizing */
+    width: 100%;
+    margin-top: var(--default-padding);
+}
+
+section.user #statement p img:first-child {
+    margin-top: 0;
+}
+
+section.user #statement p img:last-child {
+    margin-top: var(--default-padding);
+}
+
+/*** Table ***/
+section.user #statement table {
+    /* sizing */
+    display: block;
+    width: 100%;
+
+    /* overflow */
+    overflow-x: scroll;
+    overflow-y: visible;
+}
+
+section.user #statement table {
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+section.user #statement table td,
+section.user #statement table th {
+    border-right: 1px solid var(--foreground-color-500);
+    padding: 8px 12px
+}
+
+section.user #statement table td:last-child,
+section.user #statement table th:last-child {
+    border-right: 0
+}
+
+section.user #statement table td {
+    border-top: 1px solid var(--foreground-color-500)
+}

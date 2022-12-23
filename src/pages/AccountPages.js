@@ -1,12 +1,34 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Link, Navigate } from "react-router-dom";
-import { forgot, login, useAuth } from "../firebase";
+import { forgot, login, logout, useAuth } from "../firebase";
 
 import "../style/pages/account/default.css"
 
 export function AccountIndex() {
     return <>
         <h1>Account (Index)</h1>
+    </>
+}
+
+export function AccountManage() {
+    const currentUser = useAuth(null);
+    const [redirect, setRedirect] = useState(false);
+
+    function handleLogout() {
+        logout();
+    }
+
+    useEffect(() => {
+        if (currentUser === null) setRedirect(true)
+    }, [currentUser])
+
+    return <>
+        {!currentUser && redirect && <Navigate to="../login" />}
+        {currentUser && <section className="account">
+            <div className="container">
+                <button onClick={() => handleLogout()}>Logout</button>
+            </div>
+        </section>}
     </>
 }
 
@@ -32,7 +54,12 @@ export function AccountLogin() {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        login(emailRef.current.value,)
+        login(emailRef.current.value, passwordRef.current.value)
+            .then(res => {
+                if (res.error) {
+                    setError(res.error)
+                }
+            })
     }
 
     return <>
@@ -68,6 +95,11 @@ export function AccountForgot() {
         e.preventDefault();
 
         forgot(emailRef.current.value)
+        .then(res => {
+            if (res.error) {
+                setError(res.error)
+            }
+        })
     }
 
     return <>

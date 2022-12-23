@@ -168,7 +168,7 @@ section.recipe #information ul li span.title {
     line-height: 1;
 }
 
-section.recipe #information ul li span.time {
+section.recipe #information ul li span.subTitle {
     /* text */
     font-size: 14px;
     font-weight: 500;

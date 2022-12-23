@@ -4,6 +4,12 @@
     height: 100vh;
 }
 
+#root>main>section.account *::selection {
+    /* styling */
+    background-color: var(--foreground-color-200);
+    color: var(--background-color-200);
+}
+
 #root>main>section.account>.container {
     /* sizing */
     width: 100%;
@@ -58,6 +64,20 @@
 
     /* styling */
     color: inherit;
+}
+
+#root>main>section.account>.container form span.error {
+    /* sizing */
+    width: 100%;
+    padding: var(--default-padding);
+
+    /* flex */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* styling */
+    border: 2px solid var(--form-color-invalid);
 }
 
 #root>main>section.account>.container form input {
