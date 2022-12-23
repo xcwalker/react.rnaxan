@@ -108,7 +108,7 @@ export async function uploadImage(file, route, currentUser) {
         alert("Unsupported Format")
         return
     }
-    
+
     const fileRef = ref(storage, route + "/" + currentUser.uid + '-' + Date.now() + file.name);
     await uploadBytes(fileRef, file);
     const photoURL = await getDownloadURL(fileRef);
@@ -285,19 +285,25 @@ export async function updateRecipe(recipeOBJ, recipeMainImage, recipeOtherImages
     var recipeImagesArray = recipeOBJ.images.other;
     const date = new Date();
 
-    if (recipeOBJ.images.main === "") {
-        await uploadImage(recipeMainImage, currentUser).then(res => {
-            recipeHeaderImageLink = res;
-        })
+    if (recipeMainImage !== undefined) {
+        await uploadImage(recipeMainImage, currentUser)
+            .then(res => {
+                recipeHeaderImageLink = res;
+            })
     } else {
         recipeHeaderImageLink = recipeOBJ.images.main;
     }
 
-    for (let i = 0; recipeOtherImages.length > i; i++) {
-        console.log(recipeOtherImages.item(i))
-        await uploadImage(recipeOtherImages.item(i), currentUser).then(res => {
-            recipeImagesArray.push(res);
-        })
+    if (recipeOtherImages !== undefined) {
+        for (let i = 0; recipeOtherImages.length > i; i++) {
+            console.log(recipeOtherImages.item(i))
+            await uploadImage(recipeOtherImages.item(i), currentUser)
+                .then(res => {
+                    recipeImagesArray.push(res);
+                })
+        }
+    } else {
+        recipeImagesArray = recipeOBJ.images.other
     }
 
     await updateDoc(doc(db, "recipes", ID), {
@@ -311,6 +317,7 @@ export async function updateRecipe(recipeOBJ, recipeMainImage, recipeOtherImages
         info: {
             author: currentUser.uid,
             updatedAt: date.toJSON(),
+            createdAt: recipeOBJ.info.createdAt,
         }
     }).then(() => {
         console.info("Recipe Updated", ID)

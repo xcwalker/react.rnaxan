@@ -19,6 +19,7 @@ section.recipe>.container .side {
     gap: calc(var(--default-padding) * 2);
 }
 
+section.recipe a.share,
 section.recipe button.share {
     /* sizing */
     padding: var(--header-padding);
@@ -28,6 +29,8 @@ section.recipe button.share {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
+    text-decoration: none;
+    text-align: center;
 
     /* styling */
     border-radius: 0;
@@ -36,6 +39,8 @@ section.recipe button.share {
     color: var(--background-color-100);
 }
 
+section.recipe a.share:hover,
+section.recipe a.share:focus,
 section.recipe button.share:hover,
 section.recipe button.share:focus {
     /* cursor */
@@ -48,6 +53,7 @@ section.recipe button.share:focus {
     outline: none;
 }
 
+section.recipe a.share:active,
 section.recipe button.share:active {
     /* styling */
     border: 2px solid var(--foreground-color-100);

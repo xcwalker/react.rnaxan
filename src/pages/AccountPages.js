@@ -63,7 +63,7 @@ export function AccountLogin() {
     }
 
     return <>
-        {currentUser && <Navigate to='/recipes/user/' />}
+        {currentUser && <Navigate to='/user/' />}
         <section className="account">
             <div className="container">
                 <form action="" onSubmit={(Event) => { handleSubmit(Event) }}>
