@@ -1,0 +1,152 @@
+#root>main>section.error {
+    /* sizing */
+    width: 100%;
+    height: 100vh;
+}
+
+#root>main>section.error *::selection {
+    /* styling */
+    background-color: var(--foreground-color-200);
+    color: var(--background-color-200);
+}
+
+#root>main>section.error>.container {
+    /* sizing */
+    width: 100%;
+    height: 100%;
+    padding: var(--header-style-padding);
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--default-padding);
+}
+
+#root>main>section.error>.container .content {
+    /* sizing */
+    width: min(375px, 100%);
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--default-padding);
+
+    /* styling */
+    color: var(--foreground-color-200);
+}
+
+/*** info ***/
+#root>main>section.error>.container .content .info {
+    /* sizing */
+    width: 100%;
+
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    /* styling */
+    border-top: 2px solid currentColor;
+
+    /* transition */
+    transition: var(--transition-color-500);
+}
+
+#root>main>section.error>.container .content .info span {
+    /* text */
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+
+    /* styling */
+    color: inherit;
+}
+
+/*** about ***/
+#root>main>section.error>.container .content .about {
+    /* sizing */
+    width: 100%;
+    height: 100px;
+
+    /* flex */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* styling */
+    background-color: var(--form-color-invalid-opac);
+    border: 1px solid var(--form-color-invalid);
+}
+
+#root>main>section.error>.container .content .about h1 {
+    /* spacing */
+    margin: 0;
+    padding: 0;
+}
+
+
+#root>main>section.error>.container .content .about *::selection {
+    /* styling */
+    color: var(--form-color-invalid);
+    background-color: transparent;
+}
+
+/*** routes ***/
+#root>main>section.error>.container .content .routes {
+    /* sizing */
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    /* grid */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(175px, 100%), 1fr));
+    gap: var(--default-padding);
+}
+
+#root>main>section.error>.container .content .routes a {
+    /* sizing */
+    padding: var(--header-padding);
+    width: 100%;
+
+    /* text */
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-align: center;
+
+    /* styling */
+    border-radius: 0;
+    border: 2px solid var(--foreground-color-100);
+    background-color: var(--foreground-color-100);
+    color: var(--background-color-100);
+
+    /* transition */
+    transition: var(--transition-color-500), var(--transition-background_color-500);
+}
+
+#root>main>section.error>.container .content .routes a:hover,
+#root>main>section.error>.container .content .routes a:focus {
+    /* cursor */
+    cursor: pointer;
+
+    /* styling */
+    border: 2px solid var(--foreground-color-100);
+    background-color: transparent;
+    color: var(--foreground-color-100);
+    outline: none;
+}
+
+#root>main>section.error>.container .content .routes a:active {
+    /* styling */
+    border: 2px solid var(--foreground-color-100);
+    background-color: var(--foreground-color-100);
+    color: var(--foreground-color-100);
+}

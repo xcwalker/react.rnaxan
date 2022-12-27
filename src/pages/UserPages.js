@@ -110,7 +110,7 @@ export function UserIndex() {
                                     </li>}
                                 </ul>
                             </div>
-                            <div className="side-item" id="links">
+                            {user.links && <div className="side-item" id="links">
                                 <div className="info">
                                     <span>Links</span>
                                 </div>
@@ -133,7 +133,7 @@ export function UserIndex() {
                                         return <></>
                                     })}
                                 </ul>
-                            </div>
+                            </div>}
                             {user.about?.statement && <div className="side-item" id="statement">
                                 <div className="info">
                                     <span>Statement</span>
@@ -145,6 +145,7 @@ export function UserIndex() {
                                 </div>
                             </div>}
                             <a href={"https://acron.xcwalker.dev/user/" + currentUser?.uid + "/edit"} className="edit">Edit On Acron</a>
+                            <Link to="/recipe/new" className="edit">New Recipe</Link>
                         </div>
                         <div className="main">
                             <header>
@@ -248,6 +249,9 @@ export function UserIndex() {
                                                 })}
                                             </>}
                                         </ul>
+                                        {recipes.length === 0 && <div className="no-results">
+                                            <Link to="/recipe/new" className="edit">New Recipe</Link>
+                                        </div>}
                                     </InfiniteScroll>
                                 </div>
                             </main>

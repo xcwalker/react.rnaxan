@@ -2,6 +2,9 @@
     /* sizing */
     width: 100%;
     height: 100vh;
+
+    /* transition */
+    transition: var(--transition-background_color-600), var(--transition-color-600);
 }
 
 #root>main>section.account *::selection {
@@ -182,7 +185,7 @@
     color: var(--foreground-color-100);
 
     /* transition */
-    transition: var(--transition-color-500);
+    transition: var(--transition-color-600);
 }
 
 #root>main>section.account>.container .other a:hover {

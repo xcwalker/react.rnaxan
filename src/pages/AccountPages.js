@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { Link, Navigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { forgot, login, logout, useAuth } from "../firebase";
 
 import "../style/pages/account/default.css"
@@ -24,11 +25,17 @@ export function AccountManage() {
 
     return <>
         {!currentUser && redirect && <Navigate to="../login" />}
-        {currentUser && <section className="account">
-            <div className="container">
-                <button onClick={() => handleLogout()}>Logout</button>
-            </div>
-        </section>}
+        {currentUser && <>
+            <Helmet>
+                <title>Manage Account | Rnaxan</title>
+                <meta name="description" content="Manage your Rnaxan/Acron account" />
+            </Helmet>
+            <section className="account">
+                <div className="container">
+                    <button onClick={() => handleLogout()}>Logout</button>
+                </div>
+            </section>
+        </>}
     </>
 }
 
@@ -64,6 +71,10 @@ export function AccountLogin() {
 
     return <>
         {currentUser && <Navigate to='/user/' />}
+        <Helmet>
+            <title>Login | Rnaxan</title>
+            <meta name="description" content="Login into Rnaxan using your Acron account" />
+        </Helmet>
         <section className="account">
             <div className="container">
                 <form action="" onSubmit={(Event) => { handleSubmit(Event) }}>
@@ -95,14 +106,18 @@ export function AccountForgot() {
         e.preventDefault();
 
         forgot(emailRef.current.value)
-        .then(res => {
-            if (res.error) {
-                setError(res.error)
-            }
-        })
+            .then(res => {
+                if (res.error) {
+                    setError(res.error)
+                }
+            })
     }
 
     return <>
+        <Helmet>
+            <title>Forgot Password | Rnaxan</title>
+            <meta name="description" content="Reset your Acron account password" />
+        </Helmet>
         <section className="account">
             <div className="container">
                 <form action="" onSubmit={(Event) => { handleSubmit(Event) }}>

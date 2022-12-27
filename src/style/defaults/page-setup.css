@@ -19,7 +19,7 @@ body {
     color: var(--foreground-color-100);
 
     /* transition */
-    transition: background-color ease-in-out 0.5s, color ease-in-out 0.5s;
+    transition: var(--transition-background_color-600), var(--transition-color-600);
 }
 
 #root>main {

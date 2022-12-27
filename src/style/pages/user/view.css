@@ -1,4 +1,8 @@
-/* section.user {} */
+section.user {
+
+    /* transition */
+    transition: var(--transition-background_color-600), var(--transition-color-600);
+}
 
 section.user>.container {
     /* flex */
@@ -533,4 +537,55 @@ section.user>.container .main>main>.container ul a .about>span.author {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+/*** no-results ***/
+section.user>.container .main>main>.container .no-results {
+    /* sizing */
+    width: 100%;
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+section.user>.container .main>main>.container .no-results a {
+    /* sizing */
+    width: 100%;
+    padding: var(--header-padding);
+
+    /* flex */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* text */
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+
+    /* styling */
+    border-radius: 0;
+    background-color: var(--foreground-color-100);
+    color: var(--background-color-100);
+    border: 2px solid var(--foreground-color-100);
+}
+
+section.user>.container .main>main>.container .no-results a:hover,
+section.user>.container .main>main>.container .no-results a:focus {
+    /* styling */
+    background-color: var(--background-color-100);
+    color: var(--foreground-color-100);
+    border-color: var(--foreground-color-100);
+}
+
+section.user>.container .main>main>.container .no-results a:active {
+    /* styling */
+    background-color: var(--foreground-color-100);
+    color: var(--foreground-color-100);
+    border-color: var(--foreground-color-100);
 }

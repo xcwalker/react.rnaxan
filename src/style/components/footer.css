@@ -5,6 +5,9 @@
     /* styling */
     background-color: var(--background-color-200);
     color: var(--foreground-color-200);
+
+    /* transition */
+    transition: var(--transition-background_color-600), var(--transition-color-600);
 }
 
 #root>footer .container {

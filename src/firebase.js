@@ -102,6 +102,7 @@ export function useAuth(falseValue) {
 }
 
 export async function uploadImage(file, route, currentUser) {
+    console.info(currentUser)
     const fileEXT = file.name.split(".").pop();
     if (fileEXT !== "jpg" && fileEXT !== "jpeg" && fileEXT !== "png" && fileEXT !== "apng" && "fileEXT" !== "webp" && fileEXT !== "webm" && fileEXT !== "gif" && fileEXT === "mp4") {
         console.error("Unsupported Format");
@@ -245,15 +246,20 @@ export async function createRecipe(recipeOBJ, recipeMainImage, recipeOtherImages
     var recipeImagesArray = [];
     const date = new Date();
 
-    await uploadImage(recipeMainImage, currentUser).then(res => {
-        recipeHeaderImageLink = res;
-    })
+    if (recipeMainImage) {
+        await uploadImage(recipeMainImage, "images/recipe/", currentUser)
+            .then(res => {
+                recipeHeaderImageLink = res;
+            })
+    }
 
-    for (let i = 0; recipeOtherImages.length > i; i++) {
-        console.log(recipeOtherImages.item(i))
-        await uploadImage(recipeOtherImages.item(i), currentUser).then(res => {
-            recipeImagesArray.push(res);
-        })
+    if (recipeOtherImages !== undefined) {
+        for (let i = 0; recipeOtherImages.length > i; i++) {
+            await uploadImage(recipeOtherImages.item(i), "images/recipe/", currentUser)
+                .then(res => {
+                    recipeImagesArray.push(res);
+                })
+        }
     }
 
     setLoading(true)
@@ -273,20 +279,22 @@ export async function createRecipe(recipeOBJ, recipeMainImage, recipeOtherImages
         });
 
         console.log("Document written with ID: ", docSnap.id);
-        return docSnap.id
+        setLoading(false);
+        return { id: docSnap.id }
     } catch (e) {
         console.error("Error adding document: ", e);
+        setLoading(false);
+        return { error: e }
     }
-    setLoading(false);
 }
 
 export async function updateRecipe(recipeOBJ, recipeMainImage, recipeOtherImages, ID, currentUser) {
     var recipeHeaderImageLink;
-    var recipeImagesArray = recipeOBJ.images.other;
+    let recipeImagesArray = [];
     const date = new Date();
 
     if (recipeMainImage !== undefined) {
-        await uploadImage(recipeMainImage, currentUser)
+        await uploadImage(recipeMainImage, "images/recipe/", currentUser)
             .then(res => {
                 recipeHeaderImageLink = res;
             })
@@ -296,11 +304,17 @@ export async function updateRecipe(recipeOBJ, recipeMainImage, recipeOtherImages
 
     if (recipeOtherImages !== undefined) {
         for (let i = 0; recipeOtherImages.length > i; i++) {
-            console.log(recipeOtherImages.item(i))
-            await uploadImage(recipeOtherImages.item(i), currentUser)
-                .then(res => {
-                    recipeImagesArray.push(res);
-                })
+            if (typeof recipeOtherImages.item(i) === 'string' || recipeOtherImages.item(i) instanceof String) {
+                recipeImagesArray.push(recipeOtherImages.item(i));
+                return
+            } else {
+                await uploadImage(recipeOtherImages.item(i), "images/recipe/", currentUser)
+                    // eslint-disable-next-line
+                    .then(res => {
+                        recipeImagesArray.push(res);
+                        return
+                    })
+            }
         }
     } else {
         recipeImagesArray = recipeOBJ.images.other

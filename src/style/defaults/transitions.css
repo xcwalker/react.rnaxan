@@ -7,6 +7,11 @@ body {
 }
 
 body {
+    --transition-color-600: color var(--transition-duration-600) var(--transition-method-default);
     --transition-color-500: color var(--transition-duration-500) var(--transition-method-default);
+    --transition-color-400: color var(--transition-duration-400) var(--transition-method-default);
+
+    --transition-background_color-600: background-color var(--transition-duration-600) var(--transition-method-default);
     --transition-background_color-500: background-color var(--transition-duration-500) var(--transition-method-default);
+    --transition-background_color-400: background-color var(--transition-duration-400) var(--transition-method-default);
 }

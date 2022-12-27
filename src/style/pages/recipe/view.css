@@ -1,4 +1,7 @@
-/* section.recipe {} */
+section.recipe {
+    /* transition */
+    transition: var(--transition-background_color-600), var(--transition-color-600);
+}
 
 section.recipe>.container {
     /* flex */
@@ -93,10 +96,15 @@ section.recipe>.container .side .side-item .info span {
 }
 
 /*** author ***/
+section.recipe #author {
+    /* spacing */
+    margin-bottom: calc((var(--default-padding) / 2) * -1);
+    gap: calc(var(--default-padding) / 2);
+}
 section.recipe #author .about {
     /* sizing */
     width: 100%;
-    padding-left: var(--default-padding);
+    padding: calc(var(--default-padding) / 2) var(--default-padding);
 
     /* flex */
     display: flex;
@@ -104,6 +112,19 @@ section.recipe #author .about {
     justify-content: flex-start;
     align-items: center;
     gap: var(--default-padding);
+
+    /* text */
+    text-decoration: none;
+
+    /* styling */
+    color: var(--foreground-color-100);
+}
+
+section.recipe #author .about:hover,
+section.recipe #author .about:focus {
+    /* styling */
+    background-color: var(--foreground-color-100);
+    color: var(--background-color-100);
 }
 
 section.recipe #author .about img {
@@ -203,7 +224,7 @@ section.recipe #quick-links ul a {
     font-weight: 600;
 
     /* styling */
-    color: var(--foreground-color-100);
+    color: inherit;
 }
 
 section.recipe #quick-links ul a:hover,

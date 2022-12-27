@@ -13,7 +13,7 @@
     color: var(--foreground-color-100);
 
     /* transition */
-    transition: var(--transition-color-500);
+    transition: var(--transition-background_color-600), var(--transition-color-600);
 }
 
 #root>header.hero-color {

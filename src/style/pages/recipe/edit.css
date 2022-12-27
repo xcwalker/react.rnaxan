@@ -23,6 +23,7 @@ section.recipe.edit>.container .main-item li {
     gap: calc(var(--default-padding) / 2);
 }
 
+/*** Input-Text ***/
 section.recipe.edit>.container .side-item input[type="text"],
 section.recipe.edit>.container .main-item input[type="text"] {
     /* sizing */
@@ -44,10 +45,33 @@ section.recipe.edit>.container .main-item input[type="text"] {
     transition: var(--transition-color-500), var(--transition-background_color-500);
 }
 
+section.recipe.edit>.container .side-item input[type="text"]:focus,
+section.recipe.edit>.container .main-item input[type="text"]:focus {
+    outline: none;
+}
+
+section.recipe.edit>.container .side-item input[type="text"]:focus:invalid,
+section.recipe.edit>.container .main-item input[type="text"]:focus:invalid {
+    border-top-color: var(--form-color-invalid-hold);
+}
+
 section.recipe.edit>.container .side-item input[type="text"]:invalid,
 section.recipe.edit>.container .main-item input[type="text"]:invalid {
     border-top-color: var(--form-color-invalid);
 }
+
+section.recipe.edit>.container .side-item input[type="text"]:focus:valid,
+section.recipe.edit>.container .main-item input[type="text"]:focus:valid {
+    border-top-color: var(--form-color-valid-hold);
+}
+
+/*** Input-File ***/
+section.recipe.edit>.container .side-item input[type="file"],
+section.recipe.edit>.container .main-item input[type="file"] {
+    /* display */
+    display: none;
+}
+
 
 section.recipe.edit>.container .side-item .content-2,
 section.recipe.edit>.container .main-item .content-2 {
@@ -59,6 +83,7 @@ section.recipe.edit>.container .main-item .content-2 {
     gap: calc(var(--default-padding) / 2);
 }
 
+/*** Button/Input-File ***/
 section.recipe.edit>.container .side-item button[type="remove"],
 section.recipe.edit>.container .main-item button[type="remove"] {
     /* sizing */
@@ -101,7 +126,9 @@ section.recipe.edit>.container .main-item button[type="remove"]:active {
 }
 
 section.recipe.edit>.container .side-item button[type="add"],
-section.recipe.edit>.container .main-item button[type="add"] {
+section.recipe.edit>.container .main-item button[type="add"],
+section.recipe.edit>.container .side-item label[type="file"],
+section.recipe.edit>.container .main-item label[type="file"] {
     /* sizing */
     width: 100%;
     height: 34.3333px;
@@ -127,7 +154,11 @@ section.recipe.edit>.container .main-item button[type="add"] {
 section.recipe.edit>.container .side-item button[type="add"]:hover,
 section.recipe.edit>.container .side-item button[type="add"]:focus,
 section.recipe.edit>.container .main-item button[type="add"]:hover,
-section.recipe.edit>.container .main-item button[type="add"]:focus {
+section.recipe.edit>.container .main-item button[type="add"]:focus,
+section.recipe.edit>.container .side-item label[type="file"]:hover,
+section.recipe.edit>.container .side-item label[type="file"]:focus,
+section.recipe.edit>.container .main-item label[type="file"]:hover,
+section.recipe.edit>.container .main-item label[type="file"]:focus {
     /* styling */
     background-color: var(--background-color-100);
     color: var(--foreground-color-100);
@@ -135,7 +166,9 @@ section.recipe.edit>.container .main-item button[type="add"]:focus {
 }
 
 section.recipe.edit>.container .side-item button[type="add"]:active,
-section.recipe.edit>.container .main-item button[type="add"]:active {
+section.recipe.edit>.container .main-item button[type="add"]:active,
+section.recipe.edit>.container .side-item label[type="file"]:active,
+section.recipe.edit>.container .main-item label[type="file"]:active {
     /* styling */
     background-color: var(--foreground-color-100);
     color: var(--foreground-color-100);
@@ -146,4 +179,36 @@ section.recipe.edit>.container .main-item button[type="add"]:active {
 section.recipe.edit>.container #information-edit li {
     padding: calc(var(--default-padding) / 2);
     border: 2px solid currentColor;
+    border-left-width: 10px;
+}
+
+/*** Other-Images ***/
+section.recipe.edit>.container #other-images ul {
+    /* sizing */
+    width: 100%;
+
+    /* grid */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
+    gap: calc(var(--default-padding) * 2);
+}
+
+section.recipe.edit>.container #other-images li {
+    /* position */
+    position: relative;
+}
+
+section.recipe.edit>.container #other-images li img {
+    /* sizing */
+    width: 100%;
+    aspect-ratio: 18/9;
+
+    /* image */
+    object-fit: cover;
+}
+
+section.recipe.edit>.container #other-images li button {
+    /* position */
+    position: absolute;
+    inset: var(--default-padding);
 }
