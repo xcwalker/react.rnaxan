@@ -45,6 +45,10 @@ export function login(email, password) {
                     errorString = 'Error: Too Many Requests - Reset Password';
                     break;
 
+                case 'auth/network-request-failed"':
+                    errorString = 'Error: No Network Connection'
+                    break;
+
                 default:
                     errorString = err.code;
                     break;
