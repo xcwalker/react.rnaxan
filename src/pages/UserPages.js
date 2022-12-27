@@ -153,6 +153,7 @@ export function UserIndex() {
                                 <div className="container">
                                     <div className="info">
                                         <span>{user.about?.displayname}</span>
+                                        <span>User</span>
                                     </div>
                                 </div>
                                 <div className="alt-container">
