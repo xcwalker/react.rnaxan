@@ -14,6 +14,7 @@ export function DefaultHomepage() {
     useEffect(() => {
         getHeroRecipe()
             .then(res => {
+                if (res.data === undefined || res.id === undefined) return
                 setHeroRecipe(res.data)
                 setHeroRecipeID(res.id)
             })
