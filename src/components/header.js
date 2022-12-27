@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { LogoRnaxan } from "./logo";
 import { useAuth } from "../firebase";
@@ -86,14 +86,14 @@ function Navigation(props) {
                                 <ul>
                                     {link.subLinks.map((subLink, index) => {
                                         if (subLink.user === "notLoggedIn") {
-                                            return <>
+                                            return <Fragment key={index}>
                                                 {!props.currentUser && <Link to={subLink.shortLink} onClick={() => OpenNav()} key={index} tabIndex={-1} aria-label={subLink.text}>{subLink.text}</Link>}
-                                            </>
+                                            </Fragment>
                                         }
                                         if (subLink.user === "loggedIn") {
-                                            return <>
+                                            return <Fragment key={index}>
                                                 {props.currentUser && <Link to={subLink.shortLink} onClick={() => OpenNav()} key={index} tabIndex={-1} aria-label={subLink.text}>{subLink.text}</Link>}
-                                            </>
+                                            </Fragment>
                                         }
 
                                         return <Link to={subLink.shortLink} onClick={() => OpenNav()} key={index} tabIndex={-1} aria-label={subLink.text}>{subLink.text}</Link>
@@ -105,18 +105,18 @@ function Navigation(props) {
                     }
 
                     if (link.user === "notLoggedIn") {
-                        return <>
+                        return <Fragment key={index}>
                             {!props.currentUser && <Content />}
-                        </>
+                        </Fragment>
                     }
 
                     if (link.user === "loggedIn") {
-                        return <>
+                        return <Fragment key={index}>
                             {props.currentUser && <Content />}
-                        </>
+                        </Fragment>
                     }
 
-                    return <Content />
+                    return <Content key={index} />
                 })}
             </ul>
         </div>
@@ -137,15 +137,15 @@ function KeyboardNavigation(props) {
                             {link.subLinks && <ul>
                                 {link.subLinks.map((subLink, index) => {
                                     if (subLink.user === "notLoggedIn") {
-                                        return <>
+                                        return <Fragment key={index}>
                                             {!props.currentUser && <Link to={subLink.shortLink} key={index} aria-label={subLink.text}>{subLink.text}</Link>}
-                                        </>
+                                        </Fragment>
                                     }
 
                                     if (subLink.user === "loggedIn") {
-                                        return <>
+                                        return <Fragment key={index}>
                                             {props.currentUser && <Link to={subLink.shortLink} onClick={() => OpenNav()} key={index} aria-label={subLink.text}>{subLink.text}</Link>}
-                                        </>
+                                        </Fragment>
                                     }
 
                                     return <Link to={subLink.shortLink} key={index} aria-label={subLink.text}>{subLink.text}</Link>
@@ -155,18 +155,18 @@ function KeyboardNavigation(props) {
                     }
 
                     if (link.user === "notLoggedIn") {
-                        return <>
+                        return <Fragment key={index}>
                             {!props.currentUser && <Content />}
-                        </>
+                        </Fragment>
                     }
 
                     if (link.user === "loggedIn") {
-                        return <>
+                        return <Fragment key={index}>
                             {props.currentUser && <Content />}
-                        </>
+                        </Fragment>
                     }
 
-                    return <Content />
+                    return <Content key={index} />
                 })}
             </ul>
         </div>
