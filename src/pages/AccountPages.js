@@ -1,13 +1,16 @@
 import { useEffect, useRef, useState } from "react"
 import { Link, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { forgot, login, logout, useAuth } from "../firebase";
+import { forgot, getUserInfo, login, logout, useAuth } from "../firebase";
 
 import "../style/pages/account/default.css"
+import "../style/pages/account/info.css"
 
 export function AccountIndex() {
+    const currentUser = useAuth(null);
     return <>
-        <h1>Account (Index)</h1>
+        {currentUser === null && <Navigate to="./login" />}
+        {currentUser && <Navigate to="/user" />}
     </>
 }
 
@@ -40,14 +43,69 @@ export function AccountManage() {
 }
 
 export function AccountRegister() {
+    const currentUser = useAuth();
+
     return <>
-        <h1>Account (Register)</h1>
+        <Helmet>
+            <title>Account Register | Rnaxan</title>
+            <meta name="description" content="Create an account for Rnaxan" />
+        </Helmet>
+        <section className="account-info">
+            <div className="container">
+                <div className="info">
+                    <span>Register</span>
+                </div>
+                {currentUser === null && <>
+                    <p>Rnaxan use Acron accounts.</p>
+                    <a href="https://acron.xcwalker.dev/account/register">Register</a>
+                </>}
+                {currentUser && <>
+                    <Navigate to="/user" />
+                </>}
+            </div>
+        </section>
     </>
 }
 
 export function AccountInfo() {
+    const currentUser = useAuth();
+    const [user, setUser] = useState();
+
+    useEffect(() => {
+        if (currentUser === undefined) return
+
+        getUserInfo(currentUser.uid)
+            .then(res => {
+                setUser(res)
+            })
+    }, [currentUser])
+
     return <>
-        <h1>Account (Info)</h1>
+        <Helmet>
+            <title>Account Info | Rnaxan</title>
+            <meta name="description" content="Rnaxan Account Info" />
+        </Helmet>
+        <section className="account-info">
+            <div className="container">
+                <div className="info">
+                    <span>Account Info</span>
+                </div>
+                {!currentUser && <>
+                    <p>Acron accounts are used for the simplicity of the user, as this allows you to only make one account for all <a href="xcwalker.dev">xcwalker.dev</a> sites.</p>
+                    <Link to="../login">Login</Link>
+                </>}
+                {currentUser && <>
+                    <div className="about">
+                        <img src={currentUser.photoURL} alt="" />
+                        {user && <div className="text">
+                            <span className="title">{user.about.firstname} {user.about.lastname}</span>
+                            <span className="subTitle">{user.about.displayname}</span>
+                        </div>}
+                    </div>
+                    <Link to="../manage">Manage</Link>
+                </>}
+            </div>
+        </section>
     </>
 }
 
