@@ -101,6 +101,7 @@ section.recipe #author {
     margin-bottom: calc((var(--default-padding) / 2) * -1);
     gap: calc(var(--default-padding) / 2);
 }
+
 section.recipe #author .about {
     /* sizing */
     width: 100%;
@@ -118,13 +119,20 @@ section.recipe #author .about {
 
     /* styling */
     color: var(--foreground-color-100);
+    border: 2px solid transparent;
 }
 
 section.recipe #author .about:hover,
 section.recipe #author .about:focus {
     /* styling */
+    /* background-color: var(--foreground-color-100); */
+    /* color: var(--background-color-100); */
+    border-color: currentColor;
+}
+
+section.recipe #author .about:active {
+    /* styling */
     background-color: var(--foreground-color-100);
-    color: var(--background-color-100);
 }
 
 section.recipe #author .about img {
@@ -222,6 +230,7 @@ section.recipe #quick-links ul a {
     /* text */
     font-size: 16px;
     font-weight: 600;
+    text-decoration: underline dashed;
 
     /* styling */
     color: inherit;
@@ -230,7 +239,14 @@ section.recipe #quick-links ul a {
 section.recipe #quick-links ul a:hover,
 section.recipe #quick-links ul a:focus {
     /* text */
+    text-decoration: underline;
+}
+
+section.recipe #quick-links ul a:focus-visible {
+    /* text */
     text-decoration: none;
+
+    /* styling */
     outline: 2px solid currentColor;
     outline-offset: 3px;
 }
@@ -438,7 +454,6 @@ section.recipe>.container .main>main .main-item {
     /* flex */
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: var(--default-padding);
 }
 
@@ -465,7 +480,7 @@ section.recipe>.container .main>main .main-item .info span {
     color: inherit;
 }
 
-section.recipe>.container .main>main .main-item ol {
+section.recipe>.container .main>main .main-item>ol {
     /* sizing */
     width: 100%;
     margin: 0;
@@ -480,10 +495,164 @@ section.recipe>.container .main>main .main-item ol {
     gap: calc(var(--default-padding) / 2);
 }
 
-section.recipe>.container .main>main .main-item ol li {
+section.recipe>.container .main>main .main-item>ol li {
     /* text */
     font-size: 16px;
     font-weight: 500;
+}
+
+section.recipe>.container .main>main .main-item#description>.content {
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--default-padding) / 2);
+
+    /* text */
+    font-size: 16px;
+    font-weight: 500;
+}
+
+section.recipe>.container .main>main .main-item#description>.content p {
+    margin: 0;
+}
+
+section.recipe>.container .main>main .main-item#description>.content a {
+    /* text */
+    text-decoration: underline dashed;
+
+    /* styling */
+    color: inherit;
+}
+
+section.recipe>.container .main>main .main-item#description>.content a:hover,
+section.recipe>.container .main>main .main-item#description>.content a:focus-visible {
+    text-decoration: underline solid;
+}
+
+section.recipe>.container .main>main .main-item#description>.content em {}
+
+section.recipe>.container .main>main .main-item#description>.content strong {
+    /* text */
+    font-weight: 800;
+}
+
+section.recipe>.container .main>main .main-item#description>.content del {}
+
+section.recipe>.container .main>main .main-item#description>.content blockquote {
+    /* spacing */
+    margin: 0;
+    padding: 10px 20px;
+    width: fit-content;
+
+    /* styling */
+    border-left: 2px solid currentColor;
+    background-color: var(--background-color-200);
+}
+
+section.recipe>.container .main>main .main-item#description>.content ul,
+section.recipe>.container .main>main .main-item#description>.content ol {
+    /* variables */
+    --list-spacing: 18px;
+
+    /* spacing */
+    margin: 0;
+    margin-left: var(--default-padding);
+    padding: 0;
+    padding-left: var(--list-spacing);
+
+}
+
+section.recipe>.container .main>main .main-item#description>.content ul li,
+section.recipe>.container .main>main .main-item#description>.content ol li {}
+
+section.recipe>.container .main>main .main-item#description>.content ul li.task-list-item,
+section.recipe>.container .main>main .main-item#description>.content ol li.task-list-item {
+    /* list */
+    list-style: none;
+
+    /* spacing */
+    margin-left: calc(var(--list-spacing) * -1);
+}
+
+section.recipe>.container .main>main .main-item#description>.content ul li.task-list-item input,
+section.recipe>.container .main>main .main-item#description>.content ol li.task-list-item input {
+    /* spacing */
+    margin: 0;
+}
+
+section.recipe>.container .main>main .main-item#description>.content table {
+    /* sizing */
+    width: fit-content;
+
+    /* styling */
+    border-collapse: collapse;
+}
+
+/* section.recipe>.container .main>main .main-item#description>.content table thead {} */
+/* section.recipe>.container .main>main .main-item#description>.content table thead tr {} */
+
+section.recipe>.container .main>main .main-item#description>.content table thead tr th {
+    /* spacing */
+    padding: calc(var(--default-padding) / 2) var(--default-padding);
+
+    /* text */
+    text-align: left;
+    font-weight: 800;
+
+    /* styling */
+    border: 2px solid currentColor;
+    border-top: none;
+}
+
+section.recipe>.container .main>main .main-item#description>.content table thead tr th:first-of-type {
+    /* styling */
+    border-left: none;
+}
+
+section.recipe>.container .main>main .main-item#description>.content table thead tr th:last-of-type {
+    /* styling */
+    border-right: none;
+}
+
+/* section.recipe>.container .main>main .main-item#description>.content table tbody {} */
+/* section.recipe>.container .main>main .main-item#description>.content table tbody tr {} */
+
+section.recipe>.container .main>main .main-item#description>.content table tbody tr td {
+    /* spacing */
+    padding: calc(var(--default-padding) / 4) var(--default-padding);
+
+    /* styling */
+    border: 1px solid currentColor;
+    border-left-width: 2px;
+    border-right-width: 2px;
+}
+
+section.recipe>.container .main>main .main-item#description>.content table tbody tr td:first-of-type {
+    /* styling */
+    border-left: none;
+}
+
+section.recipe>.container .main>main .main-item#description>.content table tbody tr td:last-of-type {
+    /* styling */
+    border-right: none;
+}
+
+section.recipe>.container #other-images ul {
+    /* sizing */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    /* grid */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
+    gap: calc(var(--default-padding) * 2);
+}
+
+section.recipe>.container #other-images ul img {
+    width: 100%;
+    aspect-ratio: 18/9;
+    object-fit: cover;
 }
 
 /*** footer ***/
@@ -713,3 +882,36 @@ dialog.recipe-share>main .other ul .share-btn svg {
 
 /*** footer ***/
 /* dialog.recipe-share>footer {} */
+
+/**** footer ****/
+@media print {
+    #root>header {
+        position: static;
+    }
+
+    section.recipe>.container .main>header>.container .info {
+        margin: var(--footer-padding);
+    }
+
+    * {
+        background: transparent !important;
+    }
+
+    section.recipe #quick-links,
+    section.recipe a.share,
+    section.recipe button.share {
+        display: none;
+    }
+
+    section.recipe>.container .side {
+        /* hiding */
+        display: none;
+    }
+
+    section.recipe>.container .main>main .mobile {
+        /* flex */
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--default-padding) * 2);
+    }
+}

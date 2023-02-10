@@ -4,10 +4,14 @@ import { Helmet } from "react-helmet";
 import { useAuth, getRecipe, getUserInfo, updateRecipe, createRecipe } from "../firebase";
 import QRCode from "react-qr-code";
 import { LogoFacebook, LogoTwitter } from "../components/logo";
+import { Error } from "./Error";
+import RemoveMarkdown from "remove-markdown";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import remarkGfm from 'remark-gfm'
 
 import "../style/pages/recipe/view.css"
 import "../style/pages/recipe/edit.css"
-import { Error } from "./Error";
+import { Loading } from "../components/loading";
 
 export function RecipeIndex() {
     return <>
@@ -467,8 +471,8 @@ export function RecipeView() {
         {!loading && <>
             <Helmet>
                 <title>{recipe?.about.title + ' by ' + author?.about.displayname + ' | Rnaxan'}</title>
-                <meta property="og:title" name="title" content={recipe?.about.title + ' by ' + author?.about.displayname + ' | Rnaxan'} />
-                <meta name="description" content={recipe?.about.title + " (" + recipe?.about.subTitle + ") by " + author?.about.firstname + " " + author?.about.lastname + " | Only On Rnaxan"} />
+                <meta property="og:title" name="title" content={RemoveMarkdown(recipe?.about.title) + ' by ' + author?.about.displayname + ' | Rnaxan'} />
+                <meta name="description" content={RemoveMarkdown(recipe?.about.title) + " (" + RemoveMarkdown(recipe?.about.subTitle) + ") by " + author?.about.firstname + " " + author?.about.lastname + " | Only On Rnaxan"} />
 
                 <meta property="og:image" content={recipe.images?.main} />
 
@@ -608,6 +612,14 @@ export function RecipeView() {
                                     </ul>
                                 </div>}
                             </div>
+                            {recipe?.about.description && <div className="main-item" id="description">
+                                <div className="info">
+                                    <span>Description</span>
+                                </div>
+                                <div className="content">
+                                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{recipe?.about.description}</ReactMarkdown>
+                                </div>
+                            </div>}
                             {recipe?.instructions.prep && <div className="main-item" id="prep">
                                 <div className="info">
                                     <span>Prep</span>
@@ -631,6 +643,17 @@ export function RecipeView() {
                                         </li>
                                     })}
                                 </ol>
+                            </div>}
+                            {recipe?.images.other && <div className="main-item" id="other-images">
+                                <div className="info">
+                                    <span>Other Images</span>
+                                </div><ul>
+                                    {recipe?.images.other.map((image, index) => {
+                                        if (image === "") return <></>
+
+                                        return <img src={image} key={index} alt="" />
+                                    })}
+                                </ul>
                             </div>}
                         </main>
                         <footer></footer>
@@ -685,6 +708,7 @@ export function RecipeEdit() {
     const [error, setError] = useState();
     const [recipe, setRecipe] = useState();
     const [titles, setTitles] = useState({ title: "", subTitle: "" });
+    const [description, setDescription] = useState("")
     const [info, setInfo] = useState([])
     const [ingredients, setIngredients] = useState([])
     const [prep, setPrep] = useState([])
@@ -720,6 +744,7 @@ export function RecipeEdit() {
 
                 setRecipe(res)
                 setTitles({ title: res.about?.title, subTitle: res.about?.subTitle })
+                setDescription(res.about?.description)
                 setInfo(res.about?.information)
                 setIngredients(res?.ingredients)
                 setPrep(res.instructions?.prep)
@@ -791,6 +816,11 @@ export function RecipeEdit() {
     const handleTitlesSubTitleChange = (e) => {
         e.preventDefault();
         setTitles({ ...titles, subTitle: e.target.value });
+    };
+
+    const handleDescriptionChange = (e) => {
+        e.preventDefault();
+        setDescription(e.target.value);
     };
 
     // Information
@@ -893,6 +923,7 @@ export function RecipeEdit() {
             about: {
                 title: titles.title,
                 subTitle: titles.subTitle,
+                description: description,
                 information: info,
             },
             ingredients: ingredients,
@@ -913,6 +944,7 @@ export function RecipeEdit() {
                 title: "Error 403 - Access Denied | Rnaxan",
                 description: "Access Denied | Error 403 | Rnaxan"
             }} />}
+        {loading && !error && <Loading />}
         {!loading && !error && <>
             <Helmet>
                 <title>{"Edit Recipe - " + titles.title + " | Rnaxan"}</title>
@@ -1038,6 +1070,12 @@ export function RecipeEdit() {
                                         <button onClick={handleIngredientsAdd} type="add">Add</button>
                                     </ul>
                                 </div>
+                            </div>
+                            <div className="main-item" id="prep-edit">
+                                <div className="info">
+                                    <span>Description</span>
+                                </div>
+                                <textarea name="" id="" onChange={(e) => { handleDescriptionChange(e) }} >{description}</textarea>
                             </div>
                             <div className="main-item" id="prep-edit">
                                 <div className="info">

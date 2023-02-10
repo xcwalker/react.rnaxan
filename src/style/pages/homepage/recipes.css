@@ -22,7 +22,7 @@
     gap: calc(var(--default-padding) * 2);
 }
 
-#root>main>section.home-recipes>.container ul a {
+#root>main>section.home-recipes>.container ul>a {
     /* flex */
     display: flex;
     flex-direction: column;
@@ -37,13 +37,13 @@
     color: var(--foreground-color-200);
 }
 
-#root>main>section.home-recipes>.container ul a:hover,
-#root>main>section.home-recipes>.container ul a:focus {
+#root>main>section.home-recipes>.container ul>a:hover,
+#root>main>section.home-recipes>.container ul>a:focus {
     outline: 3px solid currentColor;
     outline-offset: 3px;
 }
 
-#root>main>section.home-recipes>.container ul a .info {
+#root>main>section.home-recipes>.container ul>a .info {
     /* sizing */
     width: 100%;
 
@@ -57,7 +57,7 @@
     border-top: 2px solid currentColor;
 }
 
-#root>main>section.home-recipes>.container ul a .info>span {
+#root>main>section.home-recipes>.container ul>a .info>span {
     /* text */
     font-size: 16px;
     font-weight: 600;
@@ -66,7 +66,7 @@
     color: inherit;
 }
 
-#root>main>section.home-recipes>.container ul a .image {
+#root>main>section.home-recipes>.container ul>a .image {
     /* sizing */
     width: 100%;
     aspect-ratio: 18/9;
@@ -75,7 +75,7 @@
     background-color: currentColor;
 }
 
-#root>main>section.home-recipes>.container ul a .image img {
+#root>main>section.home-recipes>.container ul>a .image img {
     /* sizing */
     width: 100%;
     height: 100%;
@@ -84,7 +84,7 @@
     object-fit: cover;
 }
 
-#root>main>section.home-recipes>.container ul a .about {
+#root>main>section.home-recipes>.container ul>a .about {
     /* sizing */
     width: 100%;
 
@@ -94,7 +94,10 @@
     justify-content: flex-start;
 }
 
-#root>main>section.home-recipes>.container ul a .about>span.title {
+#root>main>section.home-recipes>.container ul>a .about>span.title {
+    /* sizing */
+    width: fit-content;
+    
     /* text */
     font-size: 16px;
     font-weight: 600;
@@ -109,14 +112,26 @@
     color: var(--foreground-color-100);
 }
 
-#root>main>section.home-recipes>.container ul a .about>span.author {
+#root>main>section.home-recipes>.container ul>a .about>a.author {
+    /* sizing */
+    width: fit-content;
+
     /* text */
     font-size: 14px;
     font-weight: 500;
     line-height: 1;
+    text-decoration: none;
 
     /* overflow */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
+    /* styling */
+    color: inherit;
+}
+
+#root>main>section.home-recipes>.container ul>a .about>a.author:hover,
+#root>main>section.home-recipes>.container ul>a .about>a.author:focus {
+    text-decoration: underline;
 }

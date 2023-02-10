@@ -259,7 +259,7 @@ export async function createRecipe(recipeOBJ, recipeMainImage, recipeOtherImages
 
     if (recipeOtherImages !== undefined) {
         for (let i = 0; recipeOtherImages.length > i; i++) {
-            await uploadImage(recipeOtherImages.item(i), "images/recipe/", currentUser)
+            await uploadImage(recipeOtherImages[i], "images/recipe/", currentUser)
                 .then(res => {
                     recipeImagesArray.push(res);
                 })
@@ -308,11 +308,11 @@ export async function updateRecipe(recipeOBJ, recipeMainImage, recipeOtherImages
 
     if (recipeOtherImages !== undefined) {
         for (let i = 0; recipeOtherImages.length > i; i++) {
-            if (typeof recipeOtherImages.item(i) === 'string' || recipeOtherImages.item(i) instanceof String) {
-                recipeImagesArray.push(recipeOtherImages.item(i));
+            if (typeof recipeOtherImages[i] === 'string' || recipeOtherImages[i] instanceof String) {
+                recipeImagesArray.push(recipeOtherImages[i]);
                 return
             } else {
-                await uploadImage(recipeOtherImages.item(i), "images/recipe/", currentUser)
+                await uploadImage(recipeOtherImages[i], "images/recipe/", currentUser)
                     // eslint-disable-next-line
                     .then(res => {
                         recipeImagesArray.push(res);

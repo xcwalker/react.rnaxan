@@ -6,6 +6,7 @@ import { getHeroRecipe, getRecipesInfiniteScroller, getUserInfo } from "../fireb
 import "../style/pages/homepage/default.css"
 import "../style/pages/homepage/hero.css"
 import "../style/pages/homepage/recipes.css"
+import { Helmet } from "react-helmet";
 
 export function DefaultHomepage() {
     const [heroRecipe, setHeroRecipe] = useState({});
@@ -21,6 +22,10 @@ export function DefaultHomepage() {
     }, [])
 
     return <>
+        <Helmet>
+            <title>Rnaxan</title>
+            <meta name="description" content="Rnaxan | Public Recipes" />
+        </Helmet>
         <Hero recipe={heroRecipe} id={heroRecipeID} />
         <InfiniteScroller />
     </>
@@ -136,7 +141,7 @@ function ScrollerItem(props) {
         </div>
         <div className="about">
             <span className="title" title={props.recipe.data.about.title}>{props.recipe.data.about.title}</span>
-            {author && <span className="author">{author?.about.firstname} {author?.about.lastname}</span>}
+            {author && <Link className="author">{author?.about.firstname} {author?.about.lastname}</Link>}
         </div>
     </Link>
 }

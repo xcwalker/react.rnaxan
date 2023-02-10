@@ -25,7 +25,8 @@ section.recipe.edit>.container .main-item li {
 
 /*** Input-Text ***/
 section.recipe.edit>.container .side-item input[type="text"],
-section.recipe.edit>.container .main-item input[type="text"] {
+section.recipe.edit>.container .main-item input[type="text"],
+section.recipe.edit>.container .main-item textarea {
     /* sizing */
     width: 100%;
     padding: calc(var(--default-padding) / 1.5) calc(var(--default-padding) * 1.5);
@@ -45,8 +46,15 @@ section.recipe.edit>.container .main-item input[type="text"] {
     transition: var(--transition-color-500), var(--transition-background_color-500);
 }
 
+section.recipe.edit>.container .main-item textarea {
+    /* sizing */
+    height: 200px;
+    resize: vertical;
+}
+
 section.recipe.edit>.container .side-item input[type="text"]:focus,
-section.recipe.edit>.container .main-item input[type="text"]:focus {
+section.recipe.edit>.container .main-item input[type="text"]:focus,
+section.recipe.edit>.container .main-item textarea:focus {
     outline: none;
 }
 
@@ -61,7 +69,8 @@ section.recipe.edit>.container .main-item input[type="text"]:invalid {
 }
 
 section.recipe.edit>.container .side-item input[type="text"]:focus:valid,
-section.recipe.edit>.container .main-item input[type="text"]:focus:valid {
+section.recipe.edit>.container .main-item input[type="text"]:focus:valid,
+section.recipe.edit>.container .main-item textarea:focus {
     border-top-color: var(--form-color-valid-hold);
 }
 
