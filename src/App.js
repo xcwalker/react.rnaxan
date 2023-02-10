@@ -8,12 +8,12 @@ import { AccountForgot, AccountIndex, AccountInfo, AccountLogin, AccountManage, 
 import { DefaultHomepage } from "./pages/Homepages";
 import { RecipeIndex, RecipeEdit, RecipeNew, RecipeView } from "./pages/RecipePages";
 import { UserID, UserIndex } from "./pages/UserPages";
+import { Search } from "./pages/Search";
+import { Archive } from "./pages/Archive";
 
 import "./style/defaults/variables.css"
 import "./style/defaults/page-setup.css"
 import "./style/defaults/transitions.css"
-import { Search } from "./pages/Search";
-import { Archive } from "./pages/Archive";
 
 function App() {
   return (

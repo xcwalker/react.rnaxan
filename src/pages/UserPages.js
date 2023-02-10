@@ -4,10 +4,10 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown"
 import remarkGfm from 'remark-gfm'
 import { Link, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import InfiniteScroll from "react-infinite-scroller";
 
 import "../style/pages/user/view.css"
 import "../style/pages/user/view-markdown.css"
-import InfiniteScroll from "react-infinite-scroller";
 
 export function UserIndex() {
     const currentUser = useAuth(null);

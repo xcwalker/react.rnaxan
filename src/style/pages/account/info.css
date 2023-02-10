@@ -1,0 +1,158 @@
+#root>main>section.account-info {
+    /* sizing */
+    width: 100%;
+    height: 100vh;
+    padding: var(--header-style-padding);
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--default-padding);
+
+    /* transition */
+    transition: var(--transition-background_color-600), var(--transition-color-600);
+}
+
+#root>main>section.account-info *::selection {
+    /* styling */
+    background-color: var(--foreground-color-200);
+    color: var(--background-color-200);
+}
+
+#root>main>section.account-info>.container {
+    /* sizing */
+    width: min(375px, 100%);
+
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--default-padding);
+
+    /* styling */
+    color: var(--foreground-color-200);
+}
+
+#root>main>section.account-info>.container .info {
+    /* sizing */
+    width: 100%;
+
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    /* styling */
+    border-top: 2px solid currentColor;
+
+    /* transition */
+    transition: var(--transition-color-500);
+}
+
+#root>main>section.account-info>.container .info span {
+    /* text */
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+
+    /* styling */
+    color: inherit;
+}
+
+#root>main>section.account-info>.container .about {
+    /* sizing */
+    width: 100%;
+
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--default-padding);
+}
+
+#root>main>section.account-info>.container .about img {
+    /* sizing */
+    --size: 50px;
+    height: var(--size);
+    width: var(--size);
+
+    /* styling */
+    border-radius: 50%;
+}
+
+#root>main>section.account-info>.container .about .text {
+    /* flex */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: calc(var(--default-padding) / 2);
+}
+
+#root>main>section.account-info>.container .about .text span.title {
+    /* text */
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+#root>main>section.account-info>.container .about .text span.subTitle {
+    /* text */
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+
+    /* styling */
+    color: var(--foreground-color-300);
+}
+
+#root>main>section.account-info>.container .about .text span.subTitle::selection {
+    background-color: var(--foreground-color-300);
+}
+
+#root>main>section.account-info>.container>a {
+    /* sizing */
+    padding: var(--header-padding);
+    width: 100%;
+
+    /* text */
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-align: center;
+
+    /* styling */
+    border-radius: 0;
+    border: 2px solid var(--foreground-color-100);
+    background-color: var(--foreground-color-100);
+    color: var(--background-color-100);
+
+    /* transition */
+    transition: var(--transition-color-500), var(--transition-background_color-500);
+}
+
+#root>main>section.account-info>.container>a:hover,
+#root>main>section.account-info>.container>a:focus {
+    /* cursor */
+    cursor: pointer;
+
+    /* styling */
+    border: 2px solid var(--foreground-color-100);
+    background-color: transparent;
+    color: var(--foreground-color-100);
+    outline: none;
+}
+
+#root>main>section.account-info>.container>a:active {
+    /* styling */
+    border: 2px solid var(--foreground-color-100);
+    background-color: var(--foreground-color-100);
+    color: var(--foreground-color-100);
+}

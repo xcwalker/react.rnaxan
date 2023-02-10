@@ -34,20 +34,24 @@ export function login(email, password) {
             console.info(err.message)
             switch (err.code) {
                 case 'auth/invalid-email':
-                    errorString = 'Error: Invalid Email';
+                    errorString = 'Invalid Email';
                     break;
 
                 case 'auth/invalid-password':
-                    errorString = 'Error: Invalid Password';
+                    errorString = 'Invalid Password';
                     break;
 
                 case 'auth/too-many-requests':
-                    errorString = 'Error: Too Many Requests - Reset Password';
+                    errorString = 'Too Many Requests - Reset Password';
                     break;
 
                 case 'auth/network-request-failed"':
-                    errorString = 'Error: No Network Connection'
+                    errorString = 'No Network Connection'
                     break;
+
+                    case 'auth/user-not-found':
+                        errorString = 'User Not Found'
+                        break;
 
                 default:
                     errorString = err.code;
