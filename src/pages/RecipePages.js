@@ -8,6 +8,7 @@ import { Error } from "./Error";
 import RemoveMarkdown from "remove-markdown";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from 'remark-gfm'
+import { toast } from "react-hot-toast";
 
 import "../style/pages/recipe/view.css"
 import "../style/pages/recipe/edit.css"
@@ -21,12 +22,11 @@ export function RecipeIndex() {
 
 export function RecipeNew() {
     const currentUser = useAuth(null);
-    const [loading, setLoading] = useState();
+    const [loading, setLoading] = useState(false);
     const [code, setCode] = useState();
     const [ID, setID] = useState();
-    const [error, setError] = useState();
-    const [recipe, setRecipe] = useState();
     const [titles, setTitles] = useState({ title: "", subTitle: "" });
+    const [description, setDescription] = useState("")
     const [info, setInfo] = useState([])
     const [ingredients, setIngredients] = useState([])
     const [prep, setPrep] = useState([])
@@ -97,6 +97,12 @@ export function RecipeNew() {
     const handleTitlesSubTitleChange = (e) => {
         e.preventDefault();
         setTitles({ ...titles, subTitle: e.target.value });
+    };
+
+    // Description
+    const handleDescriptionChange = (e) => {
+        e.preventDefault();
+        setDescription(e.target.value);
     };
 
     // Information
@@ -214,7 +220,7 @@ export function RecipeNew() {
                 }
                 if (res.error) {
                     setCode(500)
-                    setError(res.error)
+                    console.log(res.error)
                 }
             })
     }
@@ -248,13 +254,13 @@ export function RecipeNew() {
                                         <li key={index}>
                                             <div className="content-2">
                                                 <input type="text" name={"item-title" + index} id={"item-title" + index} placeholder="title" value={item.title} onChange={(e) => handleInfoTitleChange(e, index)} required autoComplete="off" />
-                                                <button onClick={() => handleInfoRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
+                                                <button disabled={loading} onClick={() => handleInfoRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
                                             </div>
                                             <input type="text" name="link" id="link" placeholder="subtitle" value={item.subTitle} onChange={(e) => handleInfoSubTitleChange(e, index)} required autoComplete="off" />
                                         </li>
                                     ))}
                                 </>}
-                                <button onClick={handleInfoAdd} type="add">Add</button>
+                                <button disabled={loading} onClick={handleInfoAdd} type="add">Add</button>
                             </ul>
                         </div>
                         <div className="side-item" id="ingredients-edit">
@@ -267,12 +273,12 @@ export function RecipeNew() {
                                         <li key={index}>
                                             <div className="content-2">
                                                 <input type="text" name="item-title" id="item-title" placeholder="ingredient" value={item} onChange={(e) => handleIngredientsChange(e, index)} required autoComplete="off" />
-                                                <button onClick={() => handleIngredientsRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
+                                                <button disabled={loading} onClick={() => handleIngredientsRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
                                             </div>
                                         </li>
                                     ))}
                                 </>}
-                                <button onClick={handleIngredientsAdd} type="add">Add</button>
+                                <button disabled={loading} onClick={handleIngredientsAdd} type="add">Add</button>
                             </ul>
                         </div>
                         <div className="side-item" id="header-image">
@@ -282,7 +288,7 @@ export function RecipeNew() {
                             <input type="file" id="header-image-file" onChange={handleHeaderPictureChange} accept=".jpg, .jpeg, .png, .apng, .webp, .webm, .gif" />
                             <label type="file" htmlFor="header-image-file">Upload Image</label>
                         </div>
-                        <button className="share" onClick={() => { saveAll() }}>Save</button>
+                        <button disabled={loading} className="share" onClick={() => { saveAll() }}>Save</button>
                     </div>
                     <div className="main">
                         <header>
@@ -320,13 +326,13 @@ export function RecipeNew() {
                                                 <li key={index}>
                                                     <div className="content-2">
                                                         <input type="text" name={"item-title" + index} id={"item-title" + index} placeholder="title" value={item.title} onChange={(e) => handleInfoTitleChange(e, index)} required autoComplete="off" />
-                                                        <button onClick={() => handleInfoRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
+                                                        <button disabled={loading} onClick={() => handleInfoRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
                                                     </div>
                                                     <input type="text" name="link" id="link" placeholder="subtitle" value={item.subTitle} onChange={(e) => handleInfoSubTitleChange(e, index)} required autoComplete="off" />
                                                 </li>
                                             ))}
                                         </>}
-                                        <button onClick={handleInfoAdd} type="add">Add</button>
+                                        <button disabled={loading} onClick={handleInfoAdd} type="add">Add</button>
                                     </ul>
                                 </div>
                                 <div className="main-item" id="ingredients-edit">
@@ -339,14 +345,20 @@ export function RecipeNew() {
                                                 <li key={index}>
                                                     <div className="content-2">
                                                         <input type="text" name="item-title" id="item-title" placeholder="ingredient" value={item} onChange={(e) => handleIngredientsChange(e, index)} required autoComplete="off" />
-                                                        <button onClick={() => handleIngredientsRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
+                                                        <button disabled={loading} onClick={() => handleIngredientsRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
                                                     </div>
                                                 </li>
                                             ))}
                                         </>}
-                                        <button onClick={handleIngredientsAdd} type="add">Add</button>
+                                        <button disabled={loading} onClick={handleIngredientsAdd} type="add">Add</button>
                                     </ul>
                                 </div>
+                            </div>
+                            <div className="main-item" id="prep-edit">
+                                <div className="info">
+                                    <span>Description</span>
+                                </div>
+                                <textarea name="" id="" onChange={(e) => { handleDescriptionChange(e) }} value={description}></textarea>
                             </div>
                             <div className="main-item" id="prep-edit">
                                 <div className="info">
@@ -358,12 +370,12 @@ export function RecipeNew() {
                                             <li key={index}>
                                                 <div className="content-2">
                                                     <input type="text" name="item-title" id="item-title" placeholder={"step: " + (index + 1)} value={item} onChange={(e) => handlePrepChange(e, index)} required autoComplete="off" />
-                                                    <button onClick={() => handlePrepRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
+                                                    <button disabled={loading} onClick={() => handlePrepRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
                                                 </div>
                                             </li>
                                         ))}
                                     </>}
-                                    <button onClick={handlePrepAdd} type="add">Add</button>
+                                    <button disabled={loading} onClick={handlePrepAdd} type="add">Add</button>
                                 </ul>
                             </div>
                             <div className="main-item" id="cook-edit">
@@ -376,12 +388,12 @@ export function RecipeNew() {
                                             <li key={index}>
                                                 <div className="content-2">
                                                     <input type="text" name="item-title" id="item-title" placeholder={"step: " + (index + 1)} value={item} onChange={(e) => handleCookChange(e, index)} required autoComplete="off" />
-                                                    <button onClick={() => handleCookRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
+                                                    <button disabled={loading} onClick={() => handleCookRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
                                                 </div>
                                             </li>
                                         ))}
                                     </>}
-                                    <button onClick={handleCookAdd} type="add">Add</button>
+                                    <button disabled={loading} onClick={handleCookAdd} type="add">Add</button>
                                 </ul>
                             </div>
                             <div className="mobile">
@@ -404,7 +416,7 @@ export function RecipeNew() {
 
                                         return <li key={index}>
                                             <img src={image} alt="" />
-                                            <button onClick={() => handleImageRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
+                                            <button disabled={loading} onClick={() => handleImageRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
                                         </li>
                                     })}
                                 </ul>}
@@ -412,7 +424,7 @@ export function RecipeNew() {
                                 <label type="file" htmlFor="other-image">Upload Image</label>
                             </div>
                             <div className="mobile">
-                                <button className="share" onClick={() => { saveAll() }}>Save</button>
+                                <button disabled={loading} className="share" onClick={() => { saveAll() }}>Save</button>
                             </div>
                         </main>
                     </div>
@@ -431,15 +443,36 @@ export function RecipeView() {
     const [author, setAuthor] = useState({});
 
     useEffect(() => {
+        let isSubscribed = true;
         setLoading(true)
-        getRecipe(params.id).then(res => {
-            setRecipe(res)
-            setDate(new Date(res.info.createdAt.toString()))
-            getUserInfo(res.info.author).then(res => {
-                setAuthor(res)
-                setLoading(false)
-            })
+
+        const recipePromise = getRecipe(params.id);
+
+        toast.promise(recipePromise, {
+            loading: 'Fetching',
+            success: 'Data Received',
+            error: 'Error Loading',
+        }, {
+            id: "RecipeView-GetRecipe",
+            className: "toast-item",
+            position: "bottom-center",
+        });
+
+        recipePromise.then(res => {
+            if (isSubscribed) {
+                setRecipe(res)
+                setDate(new Date(res.info.createdAt.toString()))
+                getUserInfo(res.info.author).then(res => {
+                    setAuthor(res)
+                    setLoading(false)
+                })
+            }
         })
+
+        return () => {
+            toast.dismiss("RecipeView-GetRecipe")
+            isSubscribed = false
+        }
     }, [params.id])
 
     const DateOptions = { month: "short" };
@@ -706,6 +739,7 @@ export function RecipeEdit() {
     const params = useParams();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState();
+    const [updated, setUpdated] = useState(false);
     const [recipe, setRecipe] = useState();
     const [titles, setTitles] = useState({ title: "", subTitle: "" });
     const [description, setDescription] = useState("")
@@ -719,6 +753,8 @@ export function RecipeEdit() {
     const [otherImageURLS, setOtherImageURLS] = useState([""])
 
     useEffect(() => {
+        let isSubscribed = true;
+
         if (currentUser === null) {
             setError(403)
             return
@@ -728,8 +764,20 @@ export function RecipeEdit() {
 
         setLoading(true)
 
-        getRecipe(params.id)
-            .then(res => {
+        const recipe = getRecipe(params.id);
+
+        toast.promise(recipe, {
+            loading: 'Fetching',
+            success: 'Data Received',
+            error: 'Error Loading',
+        }, {
+            id: "RecipeEdit-Recipe-Load",
+            className: "toast-item",
+            position: "bottom-center",
+        });
+
+        recipe.then(res => {
+            if (isSubscribed) {
                 if (res === undefined) {
                     setError(404)
                     setLoading(false)
@@ -752,7 +800,13 @@ export function RecipeEdit() {
                 setHeaderImageURL(res.images?.main)
                 setOtherImageFiles(res.images?.other)
                 setLoading(false)
-            })
+            }
+        })
+
+        return () => {
+            toast.dismiss("RecipeView-GetRecipe")
+            isSubscribed = false
+        }
     }, [params.id, currentUser])
 
     // Images
@@ -919,7 +973,7 @@ export function RecipeEdit() {
     };
 
     const saveAll = () => {
-        updateRecipe({
+        const update = updateRecipe({
             about: {
                 title: titles.title,
                 subTitle: titles.subTitle,
@@ -934,9 +988,23 @@ export function RecipeEdit() {
             images: recipe.images,
             info: recipe.info,
         }, headerImageFile, otherImageFiles, params.id, currentUser)
+
+        toast.promise(update, {
+            loading: 'Uploading',
+            success: 'Update Complete',
+            error: 'Error Updating',
+        }, {
+            className: "toast-item",
+            position: "bottom-center",
+        });
+
+        update.then(() => {
+            setUpdated(true);
+        })
     }
 
     return <>
+        {updated && <Navigate to="../" />}
         {error === 403 && <Error
             error={{ code: "403", message: "Access Denied" }}
             routes={[{ text: "Back", shortURL: "../" }, { text: "Home", shortURL: "/" }]}
@@ -1075,7 +1143,7 @@ export function RecipeEdit() {
                                 <div className="info">
                                     <span>Description</span>
                                 </div>
-                                <textarea name="" id="" onChange={(e) => { handleDescriptionChange(e) }} >{description}</textarea>
+                                <textarea name="" id="" onChange={(e) => { handleDescriptionChange(e) }} value={description}></textarea>
                             </div>
                             <div className="main-item" id="prep-edit">
                                 <div className="info">

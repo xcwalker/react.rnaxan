@@ -314,13 +314,11 @@ export async function updateRecipe(recipeOBJ, recipeMainImage, recipeOtherImages
         for (let i = 0; recipeOtherImages.length > i; i++) {
             if (typeof recipeOtherImages[i] === 'string' || recipeOtherImages[i] instanceof String) {
                 recipeImagesArray.push(recipeOtherImages[i]);
-                return
             } else {
                 await uploadImage(recipeOtherImages[i], "images/recipe/", currentUser)
                     // eslint-disable-next-line
                     .then(res => {
                         recipeImagesArray.push(res);
-                        return
                     })
             }
         }

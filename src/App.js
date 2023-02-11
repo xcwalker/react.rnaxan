@@ -10,15 +10,21 @@ import { RecipeIndex, RecipeEdit, RecipeNew, RecipeView } from "./pages/RecipePa
 import { UserID, UserIndex } from "./pages/UserPages";
 import { Search } from "./pages/Search";
 import { Archive } from "./pages/Archive";
+import { Toaster } from "react-hot-toast";
 
 import "./style/defaults/variables.css"
 import "./style/defaults/page-setup.css"
 import "./style/defaults/transitions.css"
 
+import "./style/components/toast.css"
+
 function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <Toaster
+        containerClassName="toast-container"
+      />
       <Header />
       <main>
         <Suspense fallback={<Loading />}>

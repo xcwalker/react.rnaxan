@@ -60,13 +60,13 @@ function Hero(props) {
     </>
 }
 
-function CustomHomepage() {
-    return <>
-        <h1>Rnaxan Home [CUSTOM]</h1>
-    </>
-}
+// function CustomHomepage() {
+//     return <>
+//         <h1>Rnaxan Home [CUSTOM]</h1>
+//     </>
+// }
 
-function Featured() { }
+// function Featured() { }
 function InfiniteScroller() {
     const [lastKey, setLastKey] = useState("");
     const [recipes, setRecipes] = useState([]);

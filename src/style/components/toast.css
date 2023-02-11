@@ -1,0 +1,20 @@
+.toast-container {
+    inset: var(--header-padding) !important;
+}
+.toast-item {
+    /* sizing */
+    min-width: 165px;
+    padding: 10px;
+
+    /* text */
+    font-size: 16px;
+    font-weight: 600;
+
+    /* styling */
+    border-radius: 0;
+    background: var(--background-color-300);
+    color: var(--foreground-color-300);
+    box-shadow: none !important;
+    cursor: default;
+    user-select: none;
+}
