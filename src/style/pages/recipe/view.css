@@ -501,6 +501,94 @@ section.recipe>.container .main>main .main-item>ol li {
     font-weight: 500;
 }
 
+section.recipe>.container .main>main .main-item>ol li div.timer {
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--default-padding);
+
+    /* sizing */
+    padding-top: calc(var(--default-padding) / 2);
+}
+
+section.recipe>.container .main>main .main-item>ol li button[type="timer"] {
+    /* flex */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: calc(var(--default-padding) / 4);
+
+    /* sizing */
+    height: 34px;
+    padding: calc(var(--default-padding) / 4) var(--default-padding);
+    padding-left: 0;
+
+    /* text */
+    font-size: 14px;
+    font-weight: 500;
+
+    /* styling */
+    border: 0;
+    border: 2px solid var(--foreground-color-100);
+    background-color: var(--foreground-color-100);
+    color: var(--background-color-100);
+}
+
+section.recipe>.container .main>main .main-item>ol li button[type="timer"] div {
+    /* sizing */
+    --size: 24px;
+    --padding: 2px;
+    width: var(--size);
+    height: var(--size);
+    padding: var(--padding);
+
+    /* text */
+    font-size: calc(var(--size) - (var(--padding) * 2));
+}
+
+section.recipe>.container .main>main .main-item>ol li button[type="restart"] {
+    /* flex */
+    /* flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* sizing */
+    --size: 34px;
+    --padding: 2px;
+    width: var(--size);
+    height: var(--size);
+    padding: var(--padding);
+    margin: 0;
+
+    /* styling */
+    border: 0;
+    border: 2px solid var(--foreground-color-100);
+    background-color: var(--foreground-color-100);
+    color: var(--background-color-100);
+}
+
+section.recipe>.container .main>main .main-item>ol li button[type="timer"]:hover,
+section.recipe>.container .main>main .main-item>ol li button[type="timer"]:focus,
+section.recipe>.container .main>main .main-item>ol li button[type="restart"]:hover,
+section.recipe>.container .main>main .main-item>ol li button[type="restart"]:focus {
+    cursor: pointer;
+    border: 2px solid var(--foreground-color-100);
+    background-color: var(--background-color-100);
+    color: var(--foreground-color-100);
+    outline: none;
+}
+
+section.recipe>.container .main>main .main-item>ol li button[type="timer"]:active,
+section.recipe>.container .main>main .main-item>ol li button[type="restart"]:active {
+    border: 2px solid var(--foreground-color-100);
+    background-color: var(--foreground-color-100);
+    color: var(--foreground-color-100);
+}
+
 section.recipe>.container .main>main .main-item#description>.content {
     /* flex */
     display: flex;

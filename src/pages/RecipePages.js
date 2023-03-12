@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom"
 import { Helmet } from "react-helmet";
 import { useAuth, getRecipe, getUserInfo, updateRecipe, createRecipe } from "../firebase";
@@ -13,6 +13,7 @@ import { toast } from "react-hot-toast";
 import "../style/pages/recipe/view.css"
 import "../style/pages/recipe/edit.css"
 import { Loading } from "../components/loading";
+import { useTimer } from "react-timer-hook";
 
 export function RecipeIndex() {
     return <>
@@ -673,6 +674,12 @@ export function RecipeView() {
                                     {recipe?.instructions.cook.map((step, index) => {
                                         return <li key={index}>
                                             {step}
+                                            {recipe?.instructions.timers && recipe?.instructions.timers.map((timer, ind) => {
+                                                if (timer.step - 1 !== index) return <Fragment key={ind} />
+                                                return <Fragment key={ind}>
+                                                    <RecipeTimer duration={timer.duration * 60} />
+                                                </Fragment>
+                                            })}
                                         </li>
                                     })}
                                 </ol>
@@ -729,9 +736,75 @@ export function RecipeView() {
                     <QRCode value={"https://rnaxan.xcwalker.dev/recipe/" + params.id} />
                 </div>
             </main>
-            <footer></footer>
+            <footer>
+            </footer>
         </dialog>
+        {/* <RecipeTimer duration={1000} /> */}
     </>
+}
+
+function RecipeTimer(props) {
+    const [state, setState] = useState("restart");
+
+    const expiryTimestamp = new Date();
+    expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + props.duration); // 10 minutes timer
+
+    const {
+        seconds,
+        minutes,
+        hours,
+        start,
+        pause,
+        resume,
+        restart,
+    } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called'), autoStart: false });
+    function addZero(i) {
+        if (i < 10) { i = "0" + i }
+        return i;
+    }
+
+    async function funcStart() {
+        start()
+        setState("playing")
+    }
+
+    async function funcPause() {
+        pause()
+        setState("paused")
+    }
+
+    async function funcResume() {
+        resume()
+        setState("playing")
+    }
+
+    async function funcRestart() {
+        const time = new Date();
+        time.setSeconds(time.getSeconds() + props.duration);
+        restart(time, false);
+        setState("restart")
+    }
+
+    return <div className="timer">
+        {state === "playing" && <button type="timer" onClick={() => funcPause()}>
+            <div className="material-symbols-outlined active">pause</div>
+                {props.duration >= 3600 && <span>{addZero(hours)} : {addZero(minutes)} : {addZero(seconds)}</span>}
+                {props.duration < 3600 && <span>{addZero(minutes)} : {addZero(seconds)}</span>}
+        </button>}
+        {state === "paused" && <>
+            <button type="timer" onClick={() => funcResume()}>
+            <div className="material-symbols-outlined active">play_arrow</div>
+                {props.duration >= 3600 && <span>{addZero(hours)} : {addZero(minutes)} : {addZero(seconds)}</span>}
+                {props.duration < 3600 && <span>{addZero(minutes)} : {addZero(seconds)}</span>}
+            </button>
+            <button type="restart" onClick={() => funcRestart()} className="material-symbols-outlined active">restart_alt</button>
+        </>}
+        {state === "restart" && <button type="timer" onClick={() => funcStart()}>
+            <div className="material-symbols-outlined active">play_arrow</div>
+                {props.duration >= 3600 && <span>{addZero(hours)} : {addZero(minutes)} : {addZero(seconds)}</span>}
+                {props.duration < 3600 && <span>{addZero(minutes)} : {addZero(seconds)}</span>}
+        </button>}
+    </div>
 }
 
 export function RecipeEdit() {
@@ -747,6 +820,7 @@ export function RecipeEdit() {
     const [ingredients, setIngredients] = useState([])
     const [prep, setPrep] = useState([])
     const [cook, setCook] = useState([])
+    const [timers, setTimers] = useState([])
     const [headerImageFile, setHeaderImageFile] = useState(undefined)
     const [headerImageURL, setHeaderImageURL] = useState("")
     const [otherImageFiles, setOtherImageFiles] = useState(undefined)
@@ -797,6 +871,7 @@ export function RecipeEdit() {
                 setIngredients(res?.ingredients)
                 setPrep(res.instructions?.prep)
                 setCook(res.instructions?.cook)
+                setTimers(res.instructions?.timers)
                 setHeaderImageURL(res.images?.main)
                 setOtherImageFiles(res.images?.other)
                 setLoading(false)
@@ -972,6 +1047,33 @@ export function RecipeEdit() {
         if (cook) { setCook([...cook, ""]) };
     };
 
+    // Timers
+    const handleTimersStepChange = (e, index) => {
+        e.preventDefault();
+        const list = [...timers];
+        list[index].step = e.target.value;
+        setTimers(list);
+    };
+    const handleTimersDurationChange = (e, index) => {
+        e.preventDefault();
+        const list = [...timers];
+        list[index].duration = e.target.value;
+        setTimers(list);
+    };
+
+    const handleTimersRemove = (index) => {
+        const list = [...timers];
+        list.splice(index, 1);
+        setTimers(list);
+    };
+
+    const handleTimersAdd = (e) => {
+        e.preventDefault();
+
+        if (!timers) { setTimers([{}]) }
+        if (timers) { setTimers([...timers, {}]) };
+    };
+
     const saveAll = () => {
         const update = updateRecipe({
             about: {
@@ -984,6 +1086,7 @@ export function RecipeEdit() {
             instructions: {
                 prep: prep,
                 cook: cook,
+                timers: timers,
             },
             images: recipe.images,
             info: recipe.info,
@@ -1179,6 +1282,24 @@ export function RecipeEdit() {
                                         ))}
                                     </>}
                                     <button onClick={handleCookAdd} type="add">Add</button>
+                                </ul>
+                            </div>
+                            <div className="main-item" id="timers-edit">
+                                <div className="info">
+                                    <span>Timers</span>
+                                </div>
+                                <ul>
+                                    {timers && <>
+                                        {timers.map((item, index) => (<li key={index}>
+                                            <div className="content-2">
+                                                <input type="number" name="item-title" id="item-title" placeholder={"step: " + (index + 1)} value={item.step} onChange={(e) => handleTimersStepChange(e, index)} required autoComplete="off" />
+                                                <input type="number" name="item-title" id="item-title" placeholder={"duration (minutes): " + (index + 1)} value={item.duration} onChange={(e) => handleTimersDurationChange(e, index)} required autoComplete="off" />
+                                                <button onClick={() => handleTimersRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
+                                            </div>
+                                        </li>
+                                        ))}
+                                    </>}
+                                    <button onClick={handleTimersAdd} type="add">Add</button>
                                 </ul>
                             </div>
                             <div className="mobile">
