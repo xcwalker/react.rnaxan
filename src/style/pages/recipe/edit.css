@@ -92,6 +92,61 @@ section.recipe.edit>.container .main-item .content-2 {
     gap: calc(var(--default-padding) / 2);
 }
 
+/*** Input-Number ***/
+section.recipe.edit>.container .side-item input[type="number"],
+section.recipe.edit>.container .main-item input[type="number"] {
+    /* sizing */
+    width: 100%;
+    padding: calc(var(--default-padding) / 1.5) calc(var(--default-padding) * 1.5);
+
+    /* text */
+    font-size: 13.3333px;
+    font-weight: 400;
+    line-height: 1;
+
+    /* styling */
+    background-color: var(--background-color-100);
+    color: var(--foreground-color-100);
+    border: 1px solid currentColor;
+    border-top-width: 4px;
+    -moz-appearance: textfield;
+    appearance: textfield;
+
+    /* transition */
+    transition: var(--transition-color-500), var(--transition-background_color-500);
+}
+
+section.recipe.edit>.container .side-item input[type="number"]::-webkit-inner-spin-button,
+section.recipe.edit>.container .main-item input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; 
+}
+
+section.recipe.edit>.container .side-item input[type="number"]:focus,
+section.recipe.edit>.container .main-item input[type="number"]:focus {
+    outline: none;
+}
+
+section.recipe.edit>.container .side-item input[type="number"]:focus:invalid,
+section.recipe.edit>.container .main-item input[type="number"]:focus:invalid {
+    border-top-color: var(--form-color-invalid-hold);
+}
+
+section.recipe.edit>.container .side-item input[type="number"]:invalid,
+section.recipe.edit>.container .main-item input[type="number"]:invalid {
+    border-top-color: var(--form-color-invalid);
+}
+
+section.recipe.edit>.container .side-item input[type="number"]:hover:valid,
+section.recipe.edit>.container .main-item input[type="number"]:hover:valid {
+    border-top-color: var(--form-color-valid);
+}
+
+section.recipe.edit>.container .side-item input[type="number"]:focus:valid,
+section.recipe.edit>.container .main-item input[type="number"]:focus:valid {
+    border-top-color: var(--form-color-valid-hold);
+}
+
+
 /*** Button/Input-File ***/
 section.recipe.edit>.container .side-item button[type="remove"],
 section.recipe.edit>.container .main-item button[type="remove"] {
@@ -184,8 +239,9 @@ section.recipe.edit>.container .main-item label[type="file"]:active {
     border-color: var(--foreground-color-100);
 }
 
-/*** Information-Edit ***/
-section.recipe.edit>.container #information-edit li {
+/*** Information-Edit && Timers-Edit ***/
+section.recipe.edit>.container #information-edit li,
+section.recipe.edit>.container #timers-edit li {
     padding: calc(var(--default-padding) / 2);
     border: 2px solid currentColor;
     border-left-width: 10px;

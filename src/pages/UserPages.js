@@ -286,7 +286,6 @@ function ScrollerItem(props) {
         </div>
         <div className="about">
             <span className="title" title={props.recipe.data.about.title}>{props.recipe.data.about.title}</span>
-            {author && <span className="author">{author?.about.firstname} {author?.about.lastname}</span>}
         </div>
     </Link>
 }

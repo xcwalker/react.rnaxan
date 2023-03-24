@@ -23,7 +23,7 @@ body {
 }
 
 #root>main {
-    min-height: 85vh;
+    min-height: 90vh;
 }
 
 .material-symbols-outlined {

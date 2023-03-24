@@ -32,6 +32,7 @@ export function RecipeNew() {
     const [ingredients, setIngredients] = useState([])
     const [prep, setPrep] = useState([])
     const [cook, setCook] = useState([])
+    const [timers, setTimers] = useState([])
     const [headerImageFile, setHeaderImageFile] = useState(undefined)
     const [headerImageURL, setHeaderImageURL] = useState("")
     const [otherImageFiles, setOtherImageFiles] = useState(undefined)
@@ -201,6 +202,33 @@ export function RecipeNew() {
         if (cook) { setCook([...cook, ""]) };
     };
 
+    // Timers
+    const handleTimersStepChange = (e, index) => {
+        e.preventDefault();
+        const list = [...timers];
+        list[index].step = e.target.value;
+        setTimers(list);
+    };
+    const handleTimersDurationChange = (e, index) => {
+        e.preventDefault();
+        const list = [...timers];
+        list[index].duration = e.target.value;
+        setTimers(list);
+    };
+
+    const handleTimersRemove = (index) => {
+        const list = [...timers];
+        list.splice(index, 1);
+        setTimers(list);
+    };
+
+    const handleTimersAdd = (e) => {
+        e.preventDefault();
+
+        if (!timers) { setTimers([{}]) }
+        if (timers) { setTimers([...timers, {}]) };
+    };
+
     const saveAll = () => {
         createRecipe({
             about: {
@@ -212,6 +240,7 @@ export function RecipeNew() {
             instructions: {
                 prep: prep,
                 cook: cook,
+                timers: timers,
             },
         }, headerImageFile, otherImageFiles, currentUser, setLoading)
             .then(res => {
@@ -251,15 +280,15 @@ export function RecipeNew() {
                             </div>
                             <ul>
                                 {info && <>
-                                    {info.map((item, index) => (
-                                        <li key={index}>
+                                    {info.map((item, index) => {
+                                        return <li key={index}>
                                             <div className="content-2">
                                                 <input type="text" name={"item-title" + index} id={"item-title" + index} placeholder="title" value={item.title} onChange={(e) => handleInfoTitleChange(e, index)} required autoComplete="off" />
                                                 <button disabled={loading} onClick={() => handleInfoRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
                                             </div>
                                             <input type="text" name="link" id="link" placeholder="subtitle" value={item.subTitle} onChange={(e) => handleInfoSubTitleChange(e, index)} required autoComplete="off" />
                                         </li>
-                                    ))}
+                                    })}
                                 </>}
                                 <button disabled={loading} onClick={handleInfoAdd} type="add">Add</button>
                             </ul>
@@ -270,14 +299,14 @@ export function RecipeNew() {
                             </div>
                             <ul>
                                 {ingredients && <>
-                                    {ingredients.map((item, index) => (
-                                        <li key={index}>
+                                    {ingredients.map((item, index) => {
+                                        return <li key={index}>
                                             <div className="content-2">
                                                 <input type="text" name="item-title" id="item-title" placeholder="ingredient" value={item} onChange={(e) => handleIngredientsChange(e, index)} required autoComplete="off" />
                                                 <button disabled={loading} onClick={() => handleIngredientsRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
                                             </div>
                                         </li>
-                                    ))}
+                                    })}
                                 </>}
                                 <button disabled={loading} onClick={handleIngredientsAdd} type="add">Add</button>
                             </ul>
@@ -323,15 +352,15 @@ export function RecipeNew() {
                                     </div>
                                     <ul>
                                         {info && <>
-                                            {info.map((item, index) => (
-                                                <li key={index}>
+                                            {info.map((item, index) => {
+                                                return <li key={index}>
                                                     <div className="content-2">
                                                         <input type="text" name={"item-title" + index} id={"item-title" + index} placeholder="title" value={item.title} onChange={(e) => handleInfoTitleChange(e, index)} required autoComplete="off" />
                                                         <button disabled={loading} onClick={() => handleInfoRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
                                                     </div>
                                                     <input type="text" name="link" id="link" placeholder="subtitle" value={item.subTitle} onChange={(e) => handleInfoSubTitleChange(e, index)} required autoComplete="off" />
                                                 </li>
-                                            ))}
+                                            })}
                                         </>}
                                         <button disabled={loading} onClick={handleInfoAdd} type="add">Add</button>
                                     </ul>
@@ -367,14 +396,14 @@ export function RecipeNew() {
                                 </div>
                                 <ul>
                                     {prep && <>
-                                        {prep.map((item, index) => (
-                                            <li key={index}>
+                                        {prep.map((item, index) => {
+                                            return <li key={index}>
                                                 <div className="content-2">
                                                     <input type="text" name="item-title" id="item-title" placeholder={"step: " + (index + 1)} value={item} onChange={(e) => handlePrepChange(e, index)} required autoComplete="off" />
                                                     <button disabled={loading} onClick={() => handlePrepRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
                                                 </div>
                                             </li>
-                                        ))}
+                                        })}
                                     </>}
                                     <button disabled={loading} onClick={handlePrepAdd} type="add">Add</button>
                                 </ul>
@@ -385,16 +414,35 @@ export function RecipeNew() {
                                 </div>
                                 <ul>
                                     {cook && <>
-                                        {cook.map((item, index) => (
-                                            <li key={index}>
+                                        {cook.map((item, index) => {
+                                            return <li key={index}>
                                                 <div className="content-2">
                                                     <input type="text" name="item-title" id="item-title" placeholder={"step: " + (index + 1)} value={item} onChange={(e) => handleCookChange(e, index)} required autoComplete="off" />
                                                     <button disabled={loading} onClick={() => handleCookRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
                                                 </div>
                                             </li>
-                                        ))}
+                                        })}
                                     </>}
                                     <button disabled={loading} onClick={handleCookAdd} type="add">Add</button>
+                                </ul>
+                            </div>
+                            <div className="main-item" id="timers-edit">
+                                <div className="info">
+                                    <span>Timers</span>
+                                </div>
+                                <ul>
+                                    {timers && <>
+                                        {timers.map((item, index) => {
+                                            return <li key={index}>
+                                                <div className="content-2">
+                                                    <input type="number" name="item-title" id="item-title" placeholder={"step: " + (index + 1)} value={item.step} onChange={(e) => handleTimersStepChange(e, index)} required autoComplete="off" min="1" step="1" max={cook.length} />
+                                                    <input type="number" name="item-title" id="item-title" placeholder={"duration (minutes): " + (index + 1)} value={item.duration} onChange={(e) => handleTimersDurationChange(e, index)} required autoComplete="off" />
+                                                    <button onClick={() => handleTimersRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
+                                                </div>
+                                            </li>
+                                        })}
+                                    </>}
+                                    <button onClick={handleTimersAdd} type="add">Add</button>
                                 </ul>
                             </div>
                             <div className="mobile">
@@ -412,8 +460,7 @@ export function RecipeNew() {
                                 </div>
                                 {otherImageURLS && <ul>
                                     {otherImageURLS.map((image, index) => {
-                                        console.log(image)
-                                        if (image === "") return <></>
+                                        if (image === "") return <Fragment key={index} />
 
                                         return <li key={index}>
                                             <img src={image} alt="" />
@@ -788,12 +835,12 @@ function RecipeTimer(props) {
     return <div className="timer">
         {state === "playing" && <button type="timer" onClick={() => funcPause()}>
             <div className="material-symbols-outlined active">pause</div>
-                {props.duration >= 3600 && <span>{addZero(hours)} : {addZero(minutes)} : {addZero(seconds)}</span>}
-                {props.duration < 3600 && <span>{addZero(minutes)} : {addZero(seconds)}</span>}
+            {props.duration >= 3600 && <span>{addZero(hours)} : {addZero(minutes)} : {addZero(seconds)}</span>}
+            {props.duration < 3600 && <span>{addZero(minutes)} : {addZero(seconds)}</span>}
         </button>}
         {state === "paused" && <>
             <button type="timer" onClick={() => funcResume()}>
-            <div className="material-symbols-outlined active">play_arrow</div>
+                <div className="material-symbols-outlined active">play_arrow</div>
                 {props.duration >= 3600 && <span>{addZero(hours)} : {addZero(minutes)} : {addZero(seconds)}</span>}
                 {props.duration < 3600 && <span>{addZero(minutes)} : {addZero(seconds)}</span>}
             </button>
@@ -801,8 +848,8 @@ function RecipeTimer(props) {
         </>}
         {state === "restart" && <button type="timer" onClick={() => funcStart()}>
             <div className="material-symbols-outlined active">play_arrow</div>
-                {props.duration >= 3600 && <span>{addZero(hours)} : {addZero(minutes)} : {addZero(seconds)}</span>}
-                {props.duration < 3600 && <span>{addZero(minutes)} : {addZero(seconds)}</span>}
+            {props.duration >= 3600 && <span>{addZero(hours)} : {addZero(minutes)} : {addZero(seconds)}</span>}
+            {props.duration < 3600 && <span>{addZero(minutes)} : {addZero(seconds)}</span>}
         </button>}
     </div>
 }
@@ -1290,14 +1337,15 @@ export function RecipeEdit() {
                                 </div>
                                 <ul>
                                     {timers && <>
-                                        {timers.map((item, index) => (<li key={index}>
-                                            <div className="content-2">
-                                                <input type="number" name="item-title" id="item-title" placeholder={"step: " + (index + 1)} value={item.step} onChange={(e) => handleTimersStepChange(e, index)} required autoComplete="off" />
-                                                <input type="number" name="item-title" id="item-title" placeholder={"duration (minutes): " + (index + 1)} value={item.duration} onChange={(e) => handleTimersDurationChange(e, index)} required autoComplete="off" />
-                                                <button onClick={() => handleTimersRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
-                                            </div>
-                                        </li>
-                                        ))}
+                                        {timers.map((item, index) => {
+                                            return <li key={index}>
+                                                <div className="content-2">
+                                                    <input type="number" name="item-title" id="item-title" placeholder={"step: " + (index + 1)} value={item.step} onChange={(e) => handleTimersStepChange(e, index)} required autoComplete="off" min="1" step="1" max={cook.length} />
+                                                    <input type="number" name="item-title" id="item-title" placeholder={"duration (minutes): " + (index + 1)} value={item.duration} onChange={(e) => handleTimersDurationChange(e, index)} required autoComplete="off" />
+                                                    <button onClick={() => handleTimersRemove(index)} type="remove"><span class="material-symbols-outlined">close</span></button>
+                                                </div>
+                                            </li>
+                                        })}
                                     </>}
                                     <button onClick={handleTimersAdd} type="add">Add</button>
                                 </ul>

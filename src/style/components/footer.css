@@ -20,6 +20,7 @@
 #root>footer .container section {
     /* sizing */
     width: 275px;
+    max-width: 100%;
 }
 
 #root>footer .container section.info svg {

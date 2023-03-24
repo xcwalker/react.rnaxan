@@ -4,18 +4,18 @@ html
     {
     /** DO NOT USE **/
     /* foreground */
-    --dnu-light-color-100: hsl(0, 0%, 93%);
-    --dnu-light-color-200: hsl(0, 0%, 87%);
-    --dnu-light-color-300: hsl(0, 0%, 81%);
-    --dnu-light-color-400: hsl(0, 0%, 75%);
-    --dnu-light-color-500: hsl(0, 0%, 69%);
+    --dnu-light-color-100: hsl(0, 0%, 87%);
+    --dnu-light-color-200: hsl(0, 0%, 81%);
+    --dnu-light-color-300: hsl(0, 0%, 75%);
+    --dnu-light-color-400: hsl(0, 0%, 69%);
+    --dnu-light-color-500: hsl(0, 0%, 63%);
 
     /* background */
-    --dnu-dark-color-100: hsl(0, 0%, 7%);
-    --dnu-dark-color-200: hsl(0, 0%, 13%);
-    --dnu-dark-color-300: hsl(0, 0%, 19%);
-    --dnu-dark-color-400: hsl(0, 0%, 25%);
-    --dnu-dark-color-500: hsl(0, 0%, 31%);
+    --dnu-dark-color-100: hsl(0, 0%, 13%);
+    --dnu-dark-color-200: hsl(0, 0%, 19%);
+    --dnu-dark-color-300: hsl(0, 0%, 25%);
+    --dnu-dark-color-400: hsl(0, 0%, 31%);
+    --dnu-dark-color-500: hsl(0, 0%, 37%);
 }
 
 html
